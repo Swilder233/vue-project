@@ -54,7 +54,7 @@
       </ul>
     </div>
     <ul class="choose">
-      <v-touch></v-touch>
+      <!-- <v-touch></v-touch> -->
       <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:58}}" >
         <b>精选</b>
       </router-link>
@@ -221,9 +221,7 @@ export default {
     return {
       message:"9.9包邮",
     };
-  },
- 
-   
+  },   
 };
 </script>
 

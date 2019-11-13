@@ -1,7 +1,7 @@
 import http from "@utils/request";
 
 //精选
-export const freeInfoList = (r = "nine/listajax", n_id = "632", page = 1, cac_id = "") => http({
+export const freeInfoList = (r = "nine/listajax", n_id = 632, page = 1, cac_id = "") => http({
     method: "get",
     url: "/index.php",//精选
     data: {

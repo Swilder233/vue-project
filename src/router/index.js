@@ -31,7 +31,15 @@ const router=new VueRouter({
            meta:{
                  tabbarFlag:false,
            }
-       }    
+       },
+       {
+           path:"/merchant",
+           component:_=>import("@pages/merchant"),
+           name:"merchant",
+           meta:{
+               tabbarFlag:false
+           }
+       }   
     ]
 })
 
