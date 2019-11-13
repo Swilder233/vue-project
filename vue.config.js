@@ -6,7 +6,12 @@ module.exports = {
         '/api': {
           target: 'http://cmsjapi.ffquan.cn',
           changeOrigin: true
+        },
+        '/ajax':{
+          target:'https://m.lrts.me',
+          changeOrigin:true
         }
+
       }
     },
     configureWebpack:{
