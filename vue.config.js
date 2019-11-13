@@ -7,10 +7,15 @@ module.exports = {
           target: 'http://cmsjapi.ffquan.cn',
           changeOrigin: true
         },
-        '/index.php': {
-          target: 'http://www.mangguozhe.com',
-          changeOrigin: true
+        '/index.php':{
+          target:'http://www.mangguozhe.com',
+          changeOrigin:true
         },
+        '/ajax':{
+          target:'http://m.maoyan.com',
+          changeOrigin:true
+        }
+
       }
     },
     configureWebpack:{

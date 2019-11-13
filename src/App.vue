@@ -11,10 +11,9 @@
 // import Headers from "@common/components/headers";
 export default {
   name: "App",
-  components: {
-    Headers
-  }
+  
 };
+
 </script>
 <style lang="scss">
 #app{

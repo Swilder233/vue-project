@@ -1,8 +1,8 @@
 import Vue from "vue";
 import  VueRouter from 'vue-router';
 import freeshipping from './freeshipping'
+import kind from "./kind";
 Vue.use(VueRouter);
-
 const router=new VueRouter({
     linkActiveClass: 'active', // 这是链接激活时的class
     mode:"hash",
@@ -39,9 +39,17 @@ const router=new VueRouter({
            meta:{
                tabbarFlag:false
            }
-       }   
-    ]
-})
+       },
+       {
+        path:"/list",
+        component:_=>import("@pages/list"),
+        name:"list",   
+        },
+        {
+            path:""
+        } 
 
 
+
+     ] })
 export default router
