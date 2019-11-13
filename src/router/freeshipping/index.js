@@ -6,10 +6,10 @@ export default{
             headerflag:true,
         },
         children:[
-            {
-                path:"/freeshipping",
-                 redirect:"/freeshipping/jx1",//精选
-            },
+            // {
+            //     path:"/freeshipping",
+            //      redirect:"/freeshipping/jx1",//精选
+            // },
             {
                 path:"jx1",
                 component:_=>import("@components/jx1"),//导航栏
