@@ -1,22 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import VueTouch from "vue-touch";
-import home from "./home";
-import mine from "./mine";
-// import { Swipe, SwipeItem } from 'vant';
-// Vue.use(Swipe).use(SwipeItem);
+import kind from "./kind";
+
 Vue.use(VueRouter);
-Vue.use(VueTouch,{name:"v-touch"});
-const router = new VueRouter({
+
+const router=new VueRouter({
     mode:"hash",
     routes:[
+        kind,
+<<<<<<< HEAD
         {
-            path:"/",
-            redirect:"/home"
+            path:"/list",
+            component:_=>import("@pages/list"),
+            name:"list",   
         },
-        home,
-        mine
+        {
+            path:""
+        }
+=======
+>>>>>>> huanhuan
     ]
 })
+
 
 export default router;
