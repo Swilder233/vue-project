@@ -6,7 +6,11 @@ module.exports = {
         '/api': {
           target: 'http://cmsjapi.ffquan.cn',
           changeOrigin: true
-        }
+        },
+        '/index.php': {
+          target: 'http://www.mangguozhe.com',
+          changeOrigin: true
+        },
       }
     },
     configureWebpack:{
