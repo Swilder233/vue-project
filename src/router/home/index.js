@@ -1,0 +1,20 @@
+export default {
+    path:"/home",
+    component:()=>import("@pages/home"),
+    name:"home",
+    meta:{
+        headerFlag:false,
+        tabbarFlag:true,
+    },
+    children:[
+        {
+            path:"caidan",
+            component:()=>import("@components/caidan"),
+            name:"caidan",
+            meta:{
+                headerFlag:false,
+                tabbarFlag:true,
+            },
+        }
+    ]
+}

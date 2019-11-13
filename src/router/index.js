@@ -1,4 +1,5 @@
 import Vue from "vue";
+<<<<<<< HEAD
 import  VueRouter from 'vue-router';
 import freeshipping from './freeshipping'
 Vue.use(VueRouter);
@@ -40,8 +41,34 @@ const router=new VueRouter({
                tabbarFlag:false
            }
        }   
+=======
+import VueRouter from "vue-router";
+import kind from "./kind";
+
+Vue.use(VueRouter);
+
+const router=new VueRouter({
+    mode:"hash",
+    routes:[
+        kind,
+<<<<<<< HEAD
+        {
+            path:"/list",
+            component:_=>import("@pages/list"),
+            name:"list",   
+        },
+        {
+            path:""
+        }
+=======
+>>>>>>> huanhuan
+>>>>>>> refs/remotes/origin/master
     ]
 })
 
 
+<<<<<<< HEAD
 export default router
+=======
+export default router;
+>>>>>>> refs/remotes/origin/master

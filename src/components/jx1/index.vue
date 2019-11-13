@@ -1,6 +1,4 @@
 <template>
-
-
   <ol class="goods-new row-s">
     <li class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
       <img :src="item.pic" alt />
