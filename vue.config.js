@@ -14,6 +14,9 @@ module.exports = {
         '/ajax':{
           target:'http://m.maoyan.com',
           changeOrigin:true
+        },
+        "/list": {
+          target: "http://localhost:3000",
         }
 
       }

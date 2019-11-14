@@ -1,7 +1,7 @@
 <template>
         <div class="header">
             <div>
-                <i class="iconfont">&#xe605;</i>
+                <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
                 <span>{{title}}</span>
                 <i class="iconfont">&#xe606;</i>
             </div>
@@ -22,6 +22,11 @@ export default {
            
        }
    },
+   methods:{
+       back(){
+            this.$router.back();
+       }
+   }
 }
 </script>
 <style lang="scss">

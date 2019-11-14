@@ -53,12 +53,17 @@
         </router-link>
       </ul>
     </div>
-    
+    <!-- 使用框架 -->
+       <van-tabs>
+      <van-tab   :to="{name:'jx1',query:{n_id:item.id}}" v-for="(item,index) in btns" :title="item.name"  :key="index">
+      </van-tab>
+    </van-tabs>
    
     <ul class="choose">
+    
       <!-- <v-touch></v-touch> -->
      
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:58}}" >
+      <!-- <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:58}}" >
         <b>精选</b>
       </router-link>
       
@@ -97,7 +102,7 @@
       </router-link>
       <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:639}}">
         <b>文娱车品</b>
-      </router-link>
+      </router-link> -->
      
     </ul>
     <!-- 近一小时疯抢 -->
@@ -207,15 +212,11 @@
       />
     </h3>
     <!-- 精选推荐 -->
-    
    <router-view></router-view>
   </div>
 </template>
 <script>
 import Header from '@common/components/headers'
-// import Vue from "vue";
-// import { Button } from "vant";
-// import {freeInfoList,jjInfoList} from "@api/freeShipping";
 export default {
   name: "freeshipping",
   components: {
@@ -224,7 +225,52 @@ export default {
   data() {
     return {
       message:"9.9包邮",
-      btns:[{name:""}]
+      btns:[
+        {
+          name:"精选",
+          id:58
+        },
+        {
+          name:"居家百货",
+          id:65
+        },
+        {
+          name:"美食",
+          id:296
+        },
+        {
+          name:"服装",
+          id:597
+        },
+        {
+          name:"配饰",
+          id:604
+        },
+        {
+          name:"美妆",
+          id:611
+        },
+        {
+          name:"内衣",
+          id:618
+        },
+        {
+          name:"母婴",
+          id:625
+        },
+        {
+          name:"箱包",
+          id:8703
+        },
+        {
+          name:"数码配件",
+          id:632
+        },
+        {
+          name:"文娱车品",
+          id:639
+        },
+        ]
     };
   },   
 };
@@ -266,38 +312,38 @@ export default {
   height: 0.8rem;
 }
 
-.choose {
-  /* width: 10rem; */
-  height: 0.54rem;
-  display: flex;
-  overflow: auto;
-  border-top: 1px #e9e6e6 solid;
-  border-bottom: 1px #e9e6e6 solid;
-  background: white;
-  position: sticky;
-  top: 0;
-  z-index: 10
-}
-.choose .choose_li {
-  display: flex;
-  margin-right: 0.1rem;
-  margin-left: 0.1rem;
-  height: 0.54rem;
-  width: 0.86rem;
-  // padding: 0 0.1rem;
-}
-.choose .choose_li b {
-  font-size: 0.14rem;
-  font-weight: 400;
-  display: inline-block;
-  width: 0.6rem;
-  height: 0.54rem;
-  line-height: 0.54rem;
-  text-align: center;
-}
-.choose .active{
-  color: #fc4073;
-}
+// .choose {
+//   /* width: 10rem; */
+//   height: 0.54rem;
+//   display: flex;
+//   overflow: auto;
+//   border-top: 1px #e9e6e6 solid;
+//   border-bottom: 1px #e9e6e6 solid;
+//   background: white;
+//   position: sticky;
+//   top: 0;
+//   z-index: 10
+// }
+// .choose .choose_li {
+//   display: flex;
+//   margin-right: 0.1rem;
+//   margin-left: 0.1rem;
+//   height: 0.50rem;
+//   width: 0.86rem;
+//   // padding: 0 0.1rem;
+// }
+// .choose .choose_li b {
+//   font-size: 0.14rem;
+//   font-weight: 400;
+//   display: inline-block;
+//   width: 0.6rem;
+//   height: 0.54rem;
+//   line-height: 0.54rem;
+//   text-align: center;
+// }
+// .choose .active{
+//   color: #fc4073;
+// }
 
 
 // 近一小时疯抢
@@ -392,118 +438,6 @@ export default {
   font-weight: normal;
   margin-left: 0.1rem;
   margin-right: 0.1rem;
-}
-
-.goods-new {
-  display: flex;
-  flex-wrap: wrap;
-  background: #f0f0f0;
-}
-.goods-new .goods-new_items {
-  width: 1.53rem;
-  height: 2.69rem;
-  border-radius: 0.05rem;
-  background: white;
-  margin-bottom: 0.05rem;
-}
-.goods-new .goods-new_items:nth-of-type(2n + 1) {
-  margin-right: 0.05rem;
-  margin-left: 0.05rem;
-}
-.goods-new .goods-new_items .product_title {
-  margin-left: 0.1rem;
-  width: 1.33rem;
-  padding-right: 0.1rem;
-}
-.goods-new .goods-new_items .product_title .title_text {
-  font-size: 0.13rem;
-  font-weight: 400;
-  color: #333;
-  max-width: 0.97rem;
-  text-align: left;
-  margin: auto;
-  overflow: hidden;
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.goods-new .goods-new_items .product_title .tm {
-  min-width: 0.23rem;
-  height: 0.13rem;
-  background-color: #fe0036;
-  border-radius: 0.02rem;
-  background-image: url("https://cmsstatic.ffquan.cn//wap_new/common/images/tb.png?v=2019-11-10");
-  display: inline-block;
-  margin-right: 3px;
-  background-size: 0.19rem 0.1rem;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.goods-new .goods-new_items .price {
-  font-size: 0.1rem;
-  font-weight: 400;
-  color: #666;
-  margin-bottom: -0.03rem;
-  display: flex;
-  align-items: baseline;
-  vertical-align: text-bottom;
-  margin-left: 0.1rem;
-}
-.goods-new .goods-new_items .price .RMB {
-  font-size: 12px;
-  font-weight: 500;
-  color: #ff2b22;
-  margin-left: 1px;
-}
-.goods-new .goods-new_items .price .price_num {
-  font-size: 19px;
-  font-weight: 500;
-  color: #ff2b22;
-}
-.goods-new .goods-new_items .label_box {
-  margin-left: 0.1rem;
-}
-.goods-new .goods-new_items .label {
-  height: 8px;
-  border-radius: 2px;
-  border: 1px solid;
-  font-size: 8px;
-  font-weight: 400;
-  color: #ff0137;
-  line-height: 1;
-  padding: 0 3px;
-  margin-right: 5px;
-  border-color: #f57223;
-  color: #f57223;
-}
-.goods-new .goods-new_items .salse {
-  margin-left: 0.1rem;
-}
-.goods-new .goods-new_items .juan {
-  height: 0.12rem;
-  background: linear-gradient(90deg, #ff8873 0, #ff4f4f 100%);
-  border-radius: 0.02rem;
-  padding: 0 0.05rem 0 0.12rem;
-  font-size: 0.08rem;
-  font-weight: 400;
-  color: #fff;
-  line-height: 0.13rem;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  zoom: 1;
-  top: 0;
-}
-.salse span {
-  font-size: 9px;
-  font-weight: 400;
-  color: #888;
-}
-
-.goods-new .goods-new_items img {
-  width: 1.52rem;
-  height: 1.52rem;
 }
 
 </style>

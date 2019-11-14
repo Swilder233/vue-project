@@ -1,10 +1,10 @@
 <template>
   <div class="hgroup">
     <div class="header">
-      <i class="iconfont">&#xe605;</i>
-      <span>登录</span>
+      <!-- <i class="iconfont">&#xe605;</i> -->
+       <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
+        <span>登录</span>
     </div>
-
     <form action>
       <div class="col-mar form_input_item">
         <i class="iconfont tab_fl">
@@ -37,7 +37,7 @@
 
     <p>
       还没有账号？立即
-      <span class="col-link">注册</span>
+      <router-link to="/register" tag="span" class="col-link">注册</router-link>
     </p>
 
     <footer class="login_footer text-center">
@@ -49,7 +49,12 @@
 </template>
 <script>
 export default {
-  name: "login"
+  name: "login",
+   methods:{
+       back(){
+            this.$router.back();
+       }
+   }
 };
 </script>
 <style lang="scss">
@@ -80,7 +85,7 @@ form {
 }
 .form_input_item {
   margin: 0 0.28rem;
-  margin-bottom: .2rem;
+  margin-bottom: .4rem;
   height: 0.25rem;
   border-bottom: solid 1px #eee;
   position: relative;
@@ -118,16 +123,16 @@ input {
 //   margin-top: -0.1rem;
     left: .3rem;
     position: absolute;
-     height: .2rem;
+     height: .25rem;
 }
 .input_msg {
   height: 0.25rem;
   text-indent: 0.25rem;
-  margin-top: 0.15rem;
+  margin-top: 0.4rem;
   z-index: 1;
   font-size: 0.14rem;
   color: #fc3f78;
-  opacity: 0;
+  // opacity: 0;
   transition: all 0.4s ease-out 0s;
   -o-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;
@@ -136,6 +141,10 @@ input {
   -webkit-transform: translateY(-0.1rem) translateX(0);
   transform: translateY(-0.1rem) translateX(0);
   /* line-height: 1.8rem; */
+}
+.inputtext input{
+  outline: none;
+  margin-top: -0.05rem;
 }
 .btn.btn-block {
   padding-left: 0;
@@ -161,6 +170,7 @@ p {
   background: white;
   font-size: 0.14rem;
   font-family: Arial, Helvetica, sans-serif, "Microsoft YaHei";
+  margin-top: .25rem;
 }
 .col-link {
   color: #1991eb;

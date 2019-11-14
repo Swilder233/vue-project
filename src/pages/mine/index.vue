@@ -9,9 +9,9 @@
       </div>
       <div class="user_type">
         <span class="user_login" id="user_login">
-          <a href="#">登录</a>
+          <router-link to="/login">登录</router-link>
           /
-          <a href="#">注册</a>
+          <router-link to="/register">注册</router-link>
         </span>
       </div>
       <div class="else">

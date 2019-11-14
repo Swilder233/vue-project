@@ -4,14 +4,18 @@
     <keep-alive :exclude="/special/">
       <router-view></router-view>
     </keep-alive>
+    <Tabbar />
   </div>
-</template>
 
+</template>
 <script>
 // import Headers from "@common/components/headers";
+import Tabbar from "@common/tabBar"
 export default {
   name: "App",
-  
+  components:{
+    Tabbar
+  }
 };
 
 </script>

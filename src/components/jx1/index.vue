@@ -185,6 +185,11 @@ export default {
 };
 </script>
 <style>
+li:hover{
+  color: #fe0036;
+  font-weight: bolder;
+  border-bottom: 2px #fe0036 solid;
+}
 .goods-new {
   display: flex;
   flex-wrap: wrap;

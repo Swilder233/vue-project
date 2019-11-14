@@ -18,7 +18,7 @@ export const freeInfoList = (r = "nine/listajax", n_id = 632, page = 1, cac_id =
 //http://www.mangguozhe.com/index.php?r=nine/listajax&page=1&storey=1&n_id=23&cac_id=
 //http://www.mangguozhe.com/index.php?r=nine/listajax&page=1&storey=1&n_id=30&cac_id=
 //http://www.mangguozhe.com/index.php?r=nine/listajax&page=1&storey=1&n_id=37&cac_id=
-export const areaInfoList = (r = "nine/listajax", page = 1, storey = 1, n_id = "", cac_id = "") => http({
+export const areaInfoList = (r = "nine/listajax", page = 1, storey = 1, n_id = 58, cac_id = "") => http({
     method: "get",
     url: "/index.php",//专区
     data: {
@@ -27,7 +27,6 @@ export const areaInfoList = (r = "nine/listajax", page = 1, storey = 1, n_id = "
         storey: storey,
         n_id: n_id,
         cac_id: cac_id,
-
     }
 })
 
