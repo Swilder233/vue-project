@@ -10,7 +10,7 @@ module.exports = {
         '/ajax':{
           target:'https://m.lrts.me',
           changeOrigin:true
-        }
+        },
 
       }
     },

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import VueTouch from "vue-touch";
 import home from "./home";
 import mine from "./mine";
+import fengqiang from "./fengqiang";
 // import { Swipe, SwipeItem } from 'vant';
 // Vue.use(Swipe).use(SwipeItem);
 Vue.use(VueRouter);
@@ -14,8 +15,13 @@ const router = new VueRouter({
             path:"/",
             redirect:"/home"
         },
+        {
+            path:"/fengqiang",
+            redirect:"/fengqiang/goods/4"
+        },       
         home,
-        mine
+        mine,
+        fengqiang,
     ]
 })
 
