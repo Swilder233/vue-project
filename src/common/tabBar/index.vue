@@ -26,7 +26,7 @@ export default {
                 {
                     text:"9.9包邮",
                     icon:"&#xe601;",
-					path:"/freeshipping"
+					path:"/baoyou"
                 },
                 {
                     text:"分类",
@@ -61,7 +61,6 @@ export default {
 	justify-content: space-around;
 	align-items: center;
 	background:#fff;
-	z-index: 100;
 }
 .bottom a{
 	width: 100%;
