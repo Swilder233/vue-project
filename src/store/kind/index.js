@@ -16,10 +16,7 @@ let mutations={
     handlekind(state,list){
         state.kindList=list;
         // console.log(state.kindList)
-<<<<<<< HEAD
         console.log(state.kindList[0])
-=======
->>>>>>> huanhuan
     }
 }
 

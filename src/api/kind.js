@@ -10,8 +10,10 @@ export const kindApi=(r="class/category",type=1)=>http({
         type:type,
     }
 })
+// 分类下的列表
+export const kindListApi=(cid,px=t)=>http({
+    method:"get",
+    url:"/index.php?r=class%2Fcyajaxsub&page=1&cid="+cid+"&px="+px+"&cac_id=",
+})
 
-
-// 根据cid获取右边的数据
-// export const kindCidApi=()
 

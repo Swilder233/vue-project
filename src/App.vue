@@ -1,27 +1,20 @@
 <template>
-  <div id="app">
-      <Kind/>
-  </div>
+    <div id="app">
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive> 
+    </div>
 </template>
 
 <script>
-import Kind from "@pages/kind";
-<<<<<<< HEAD
-// import list from "@pages/list";
+
 export default {
     name:"App",
     components:{
-        Kind,
-        // list
-=======
-export default {
-    name:"App",
-    components:{
-        Kind
->>>>>>> huanhuan
+        
     }
 }
 </script>
 <style>
-  
+    
 </style>

@@ -9,7 +9,6 @@
 				<i>{{item.text}}</i>
 			</router-link>
 		</div>
-
 </template>
 
 <script>

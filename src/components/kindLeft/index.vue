@@ -25,11 +25,7 @@ export default {
     },
     async created() {
         let data=await kindApi();
-<<<<<<< HEAD
         // console.log(data)
-=======
-        console.log(data)
->>>>>>> huanhuan
         this.kindList=data.data.data;
         sessionStorage.setItem("kind",JSON.stringify(data.data.data[0]))  
     },
@@ -41,10 +37,7 @@ export default {
         background: #ffffff;
         color: #FC3F78;
         border-left: 1px solid #FC3F78;
-<<<<<<< HEAD
         border-bottom: none;
-=======
->>>>>>> huanhuan
     }
     .menu{
         margin-top: .44rem;

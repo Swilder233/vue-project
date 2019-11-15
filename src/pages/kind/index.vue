@@ -2,8 +2,8 @@
     <div>
         <!-- 头部 -->
         <div class="top">
-            <a href="">
-                <img src="@assets/images/top01.png" alt="">
+            <a href="" v-html="icon[0]" class="iconfont">
+                <!-- <img src="@assets/images/top01.png" alt=""> -->
             </a>
             <div class="from_text">
                 <form action="">
@@ -15,7 +15,6 @@
             </div>
         </div>
         <!-- left  :name="title"-->
-<<<<<<< HEAD
         <kindLeft/>
         <kindRight/>
     </div>
@@ -32,59 +31,12 @@ export default {
         kindLeft,
         kindRight
     },
-    
-=======
-        <div class="menu kind_left">
-            
-            <a href="#" v-for="(item,index) in kindList" :key="index"
-            :class="activeIndex==index?'active':''"
-            @click="handleClick(index,item)"
-            >
-                <router-link tag="div" :to="'/kind/'+arr[index]">
-                {{item.name}}
-                </router-link>
-            </a>
-            
-        </div>
-        <!-- right -->
-       
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
-    </div>
-</template>
-<script>
-// import One from "@components/kindChild/one"
-
-import {kindApi} from "@api/kind";
-import {mapState} from "vuex";
-export default {
-    name:"Kind",
-    components:{
-        // One,
-    },
     data(){
         return {
-            activeIndex:0,
-            arr:["one","two","three","four","five","six","seven","eight"]
+            icon:["&#xe605;"]
         }
-    },
-    methods: {
-        handleClick(index,item){
-            this.activeIndex=index;
-            this.$observer.$emit("handleList",this.kindList)
-        }
-    },
-    created() {
-        this.$store.dispatch("kind/handleGetList");
-
-    },
-    computed: {
-        ...mapState({
-            kindList:state=>state.kind.kindList,
-        })
-    },
->>>>>>> huanhuan
+    }
+    
 }
 </script>
 <style>
@@ -108,6 +60,8 @@ export default {
     width: .28rem;
     display:block;
     float: left;
+    text-align: center;
+    line-height: .28rem;
 }
 .top a img{padding:0.05rem 0 0 .08rem;}
 .from_text{
