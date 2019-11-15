@@ -2,7 +2,7 @@
   <div class="page">
     <Header :title="message" />
     <div class="kuanghuan">
-      <van-tabs  v-model="active" sticky>
+      <van-tabs  v-model="activeIndex" sticky>
       <van-tab   :to="{name:'feng',query:{id:item.id}}" v-for="(item,index) in timeList" :title="item.time + '疯抢'"   :key="index">
       </van-tab>
     </van-tabs>

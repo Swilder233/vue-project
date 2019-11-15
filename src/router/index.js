@@ -1,24 +1,22 @@
 import Vue from "vue";
-import VueRouter from 'vue-router';
-import freeshipping from './freeshipping'
+import VueRouter from "vue-router";
+// import VueTouch from "vue-touch";
+import home from "./home";
+import mine from "./mine";
+import fengqiang from "./fengqiang";
+import freeshipping from './freeshipping';
 import kind from "./kind";
+
 Vue.use(VueRouter);
+// Vue.use(VueTouch,{name:"v-touch"});
 const router = new VueRouter({
-    linkActiveClass: 'active', // 这是链接激活时的class
+
     mode: "hash",
     routes: [
         freeshipping,
-        
+        kind,
         // search,
-        {
-            path:"/mine",
-            component:()=>import("@pages/mine"),
-            name:"mine",
-            meta:{
-                headerFlag:false,
-                tabbarFlag:true,
-            }
-        },
+     
       
         {
             path: "/special",
@@ -77,36 +75,76 @@ const router = new VueRouter({
                         tabbarFlag: false,
                     }
                 },
-            ]
-        },
-        {   
-            path: "/dongdong",
-            redirect:"/dongdong/feng",
-            component: _ => import("@pages/dongdong"),//咚咚抢
-            name: "dongdong",
-            meta: {
-                tabbarFlag: true,
+            ]},
+            {   
+                path: "/dongdong",
+                redirect:"/dongdong/feng",
+                component: _ => import("@pages/dongdong"),//咚咚抢
+                name: "dongdong",
+                meta: {
+                    tabbarFlag: true,
+                },
+                children: [
+                    {
+                        path: "feng",
+                        component: _ => import("@components/feng"),//咚咚抢下的疯抢
+                        name: "feng",
+                        meta: {
+                            tabbarFlag: false,
+                        }
+                    },
+                ]
             },
-            children: [
+        
+        // 分类下的列表
+        // {
+        //     path:"/",
+        //     redirect:"/home"
+        // },
+        // {
+        //     path:"/home",
+        //     name:"home",
+        //     component:_=>import("@pages/home")
+        // },
+        {
+            path:"/list",
+            component:_=>import("@pages/list"),
+            name:"list",  
+            children:[
                 {
-                    path: "feng",
-                    component: _ => import("@components/feng"),//咚咚抢下的疯抢
-                    name: "feng",
-                    meta: {
-                        tabbarFlag: false,
-                    }
+                    path:"/list",
+                    redirect:"/list/child"
+                },
+                {
+                    path:"child",
+                    component:_=>import("@components/listChild"),
+                    name:"child",
+             
                 },
             ]
         },
        
+        // detail
         {
-            path: "/list",
-            component: _ => import("@pages/list"),
-            name: "list",
+            path:"/detail",
+            component:_=>import("@pages/detail"),
+            name:"detail",
+            
+        },
+        // 品牌详情
+        {
+            path:"/pinpai",
+            component:_=>import("@pages/pinpaiDetail"),
+            name:"pinpai",
         },
         {
-            path: ""
-        }
+            path:"/fengqiang",
+            redirect:"/fengqiang/goods/4"
+        },       
+        home,
+        mine,
+        fengqiang,
     ]
 })
-export default router
+
+export default router;

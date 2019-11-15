@@ -22,9 +22,6 @@
 		</div>
 
         <!-- 轮播图 -->
-        <!-- <div class="swiper">
-			<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01dhDWTZ2JJhz3ySNuZ_!!2053469401.jpg">
-		</div> -->
 
         <van-swipe :autoplay="3000" class="swiper">
         <van-swipe-item v-for="(image, index) in swiperList" :key="index" class="banner">
@@ -35,10 +32,10 @@
         <!-- 优惠 -->
         <div class="youhui">
 			<ul>
-				<li v-for="(item,index) in youhuiList" :key="index">
+				<router-link v-for="(item,index) in youhuiList" :key="index" to="fengqiang" tag="li">
 					<img :src="item.address" alt="">
 					<span>{{item.name}}</span>
-				</li>
+				</router-link>
 			</ul>
 		</div>
 
@@ -46,10 +43,16 @@
 		<div class="msg">
 			<div class="msg_center">
 				<img src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN011wdOkj2JJhy7TkPFo_!!2053469401.png" alt="">
-						<p>
-							<span>尖货新品</span>
-							负担发发的发的反对法发发的答复发的
-						</p>
+
+				<van-swipe vertical  class="msg_item" :autoplay="3000" :show-indicators="false">
+					<van-swipe-item v-for="(item,index) in youhuitoutiao" :key="index">
+						<span>{{item.tag}}</span>
+							{{item.name}}
+					</van-swipe-item>
+				</van-swipe>
+						<!-- <p>
+							
+						</p> -->
 						<i>&gt;</i>
 				
 			</div>
@@ -59,48 +62,28 @@
 			<div class="dingdong_center">
 				<div class="dingdong_center-left">
 					<div class="dianchang">
-						<h3>叮咚抢</h3>
+						<h3>咚咚抢</h3>
 						<p>
-							<span>13点场</span>8:02:30
+							<span>10点场</span>8:02:30
 						</p>
 					</div>
+
+					<div class="dianchang_goods">
 					<ul class="dianchang_content">
-						<li>
-							<img src="https://img.alicdn.com/imgextra/i1/1900302939/TB2j1dAXgjN8KJjSZFzXXaBGXXa_!!1900302939.jpg_310x310.jpg_.webp" alt="">
+						<li class="dianchang_item" 
+						v-for="(goods, index) in  dongdongqiang.ddqGoodsList" :key="index"> 
+							<img :src="goods.pic" alt="">
 							<p>
-								<i>￥4.8</i>
-								<del>￥5.8</del>
-							</p>
-						</li>
-						<li>
-							<img src="https://img.alicdn.com/imgextra/i1/1900302939/TB2j1dAXgjN8KJjSZFzXXaBGXXa_!!1900302939.jpg_310x310.jpg_.webp" alt="">
-							<p>
-								<i>￥4.8</i>
-								<del>￥5.8</del>
-							</p>
-						</li>
-						<li>
-							<img src="https://img.alicdn.com/imgextra/i1/1900302939/TB2j1dAXgjN8KJjSZFzXXaBGXXa_!!1900302939.jpg_310x310.jpg_.webp" alt="">
-							<p>
-								<i>￥4.8</i>
-								<del>￥5.8</del>
-							</p>
-						</li>
-						<li>
-							<img src="https://img.alicdn.com/imgextra/i1/1900302939/TB2j1dAXgjN8KJjSZFzXXaBGXXa_!!1900302939.jpg_310x310.jpg_.webp" alt="">
-							<p>
-								<i>￥4.8</i>
-								<del>￥5.8</del>
+								<i>￥{{goods.price}}</i>
+								<del>￥{{goods.orginPrice}}</del>
 							</p>
 						</li>
 					</ul>
+					</div>
 				</div>
 				<div class="dingdong_center-right">
-					<a href="#">
-						<img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN01af5Tt62JJhz2BfdTR_!!2053469401.jpg" alt="">
-					</a>
-					<a href="#">
-						<img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01euaNy22JJhz3lZB81_!!2053469401.jpg" alt="">
+					<a href="#" v-for="(item,index) in dongdongqiang.config" :key="index">
+						<img :src="item.address">
 					</a>
 				</div>
 			</div>
@@ -140,35 +123,17 @@
 						134******72刚刚领取了优惠券:【直营】德国进口叶黄素胶囊30粒*6盒
 					</p>
 				</div>
-				<ul>
-					<li>
-						<img src="https://img.alicdn.com/imgextra/i1/1662240508/O1CN015f1rau1FchkDYsO8g_!!0-item_pic.jpg_310x310.jpg_.webp" alt="">
-						<p>ins女法兰绒加厚睡衣套装珊瑚绒</p>
+					<van-swipe class="allGoods" :autoplay="3000">
+					<van-swipe-item v-for="(item,index) in allList" :key="index" class="allItem" style="width:85px">
+						<img :src="item.pic">
+						<p>{{item.dtitle}}</p>
 						<p>
-							<span>￥13.3</span>
-							<i>130元券</i>
+							<span>￥{{item.price}}</span>
+							<i>{{item.couponPrice}}元券</i>
 						</p>
 						<h4>即将领完</h4>
-					</li>
-					<li>
-						<img src="https://img.alicdn.com/imgextra/i1/1662240508/O1CN015f1rau1FchkDYsO8g_!!0-item_pic.jpg_310x310.jpg_.webp" alt="">
-						<p>ins女法兰绒加厚睡衣套装珊瑚绒</p>
-						<p>
-							<span>￥13.3</span>
-							<i>130元券</i>
-						</p>
-						<h4>即将领完</h4>
-					</li>
-					<li>
-						<img src="https://img.alicdn.com/imgextra/i1/1662240508/O1CN015f1rau1FchkDYsO8g_!!0-item_pic.jpg_310x310.jpg_.webp" alt="">
-						<p>ins女法兰绒加厚睡衣套装珊瑚绒</p>
-						<p>
-							<span>￥13.3</span>
-							<i>130元券</i>
-						</p>
-						<h4>即将领完</h4>
-					</li>
-				</ul>
+					</van-swipe-item>
+					</van-swipe>
 			</div>
 		</div>
 
@@ -210,6 +175,9 @@ import {youhuiList} from "@api/home";
 import {pinpaiList} from "@api/home";
 import {findGoodsList} from "@api/home";
 import {swiperList} from "@api/home";
+import {youhuitoutiao} from "@api/home";
+import {dongdongqiang} from "@api/home";
+import {allList} from "@api/home";
 export default {
     name:"home",
     data(){
@@ -219,7 +187,11 @@ export default {
             youhuiList:[],
             pinpaiList:[],
             findGoodsList:[],
-            swiperList:[]
+			swiperList:[],
+			youhuitoutiao:[],
+			dongdongqiang:[],
+			allList:[]
+			
         }
     },
    async created() {
@@ -232,7 +204,9 @@ export default {
         // console.log(goods.data);
         // 获取到优惠的信息
         let youhui  = await youhuiList();
-        this.youhuiList = youhui.data.config.data;
+		this.youhuiList = youhui.data.config.data;
+		console.log(this.youhuiList);
+		this.youhuiList[0].path="/fengqiang"
         // 品牌特卖
         let pinpai  = await pinpaiList();
         this.pinpaiList = pinpai.data.config;
@@ -244,8 +218,19 @@ export default {
         // 轮播图
         let swiper  = await swiperList();
         this.swiperList = swiper.data.config;
-        // console.log(swiper);
-
+		// console.log(swiper);
+		// 优惠头条
+		 let toutiao  = await youhuitoutiao();
+        this.youhuitoutiao = toutiao.data.config.list;
+		// console.log(this.youhuitoutiao);
+		// 咚咚抢
+		 let dongdong  = await dongdongqiang();
+		this.dongdongqiang = dongdong.data;
+		// console.log(this.dongdongqiang);
+		// 大家都在领
+		 let all  = await allList();
+        this.allList = all.data.config.list;
+		// console.log(this.allList);
 
     },
 }
@@ -260,7 +245,8 @@ export default {
         right: 0;
         bottom: 0;
         top: 0;
-        overflow: scroll
+		overflow: scroll;
+		background: #f6f6f6;
     }
     .header{
 	padding-right:.1rem;
@@ -420,7 +406,7 @@ span{
 	width: .49rem;
 	height: .11rem;
 }
-p{
+.msg_item{
 	flex: 1;
 	width: 2.04rem;
 	overflow: hidden;
@@ -428,11 +414,13 @@ p{
 	white-space: nowrap;
 	font-size: .12rem;
     margin-left: .09rem;
+	height: .14rem;
     span{
 	background: #ff7913;
 	color: #fff;
 	border-radius: .08rem;
 	padding: 0 .05rem;
+	height: .12rem;
 }
 }
 i{
@@ -498,26 +486,39 @@ i{
     .dingdong_center-left{
 	width: 1.45rem;
     padding-top: .1rem;
-    .dianchang_content li{
-	width: .63rem;
+	overflow: hidden;
+	.dianchang_goods{
+		width: 100%;
+		height: 1.86rem;
+		overflow: scroll;
+    .dianchang_content {
+			width:2.9rem;
+			height: 1.86rem;
+			overflow: hidden;
+		.dianchang_item{
+	width: .68rem;
 	height: .82rem;
 	float: left;
 	padding: 0;
-    margin: 0 .08rem .13rem 0;
+    margin: 0 .03rem .13rem 0;
+	// background: red;
     img{
 	width: .61rem;
 	height: .61rem;
 }
- p {i{
+ p {
+	 font-size:.12rem;
+	 i{
 	color: #ff3b32;
-	font-size: .12rem;
+	font-size: .08rem;
 	font-style: normal;
 }
 del{
 	color: #999;
-	font-size: .12rem;
+	font-size: .08rem;
 }
  }
+}}
 }
 }
 }
@@ -607,6 +608,9 @@ p{
     height:.2rem;
     p{
 	margin-right: .12rem;
+	font-size: .12rem;
+	background: rgba(254,58,51,.1);
+	padding: .03rem 0;
 	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -623,17 +627,16 @@ p{
 }
 }
 }
-ul{
-	display: flex;
-    justify-content:center;
-    li{
+.allGoods{
+	width: 100%;
+    .allItem{
 	padding-top: .07rem;
 	margin-right: .13rem;
-	float: left;
 	width: .85rem;
     height: 1.57rem;
-    img{
 	width: .85rem;
+    img{
+	width: 100%;
 	height: .85rem;
 	margin-bottom: .05rem;
 }
@@ -651,7 +654,8 @@ i{
 	margin-left: .03rem;
 	background: #fe3a33;
 	color: #fff;
-	padding: 0 .03rem;
+	padding: 0 .02rem;
+	font-style: normal;
 }
 }
 h4{

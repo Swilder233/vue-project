@@ -2,62 +2,16 @@
     <div class="content">
             <ul  v-for="(item,index) in kindInfo.floors" :key="index">
                 <h3>{{item.name}}</h3>
-<<<<<<< HEAD
-                <router-link tag="li" :to="'/list?index='+index+'&cid='+item.cid"
+                <router-link tag="li" :to="'/list?cid='+item.list[indexOne].api_cid+'&name='+item.list[indexOne].name"
                 v-for="(childOne,indexOne) in item.list" :key="indexOne">
-=======
-                <li v-for="(childOne,indexOne) in item.list" :key="indexOne">
->>>>>>> huanhuan
                     <a href="">
                         <img :src="childOne.img" alt="">
                         {{childOne.name}}
                     </a>
-<<<<<<< HEAD
                 </router-link>
                
             </ul>
            
-=======
-                </li>
-                <!-- <li>
-                    <a href="">
-                        <img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01lbMOAc2JJhydLRRSu_!!2053469401.png_310x310.jpg_.webp" alt="">
-                        换季收纳
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN01jovxys2JJhyfk5w9V_!!2053469401.png_310x310.jpg_.webp" alt="">
-                        女士专用
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN016cEUcb2JJhyeFuhyG_!!2053469401.png_310x310.jpg_.webp" alt="">
-                        移动电源
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN01uiLwGQ2JJhyfk7oXa_!!2053469401.png_310x310.jpg_.webp" alt="">
-                        时尚彩妆
-                    </a>
-                </li>
-                -->
-            </ul>
-             <!-- <One/> -->
-        <!-- <div class="content" v-for="(kindInfo,dex) in kindList" :key="dex">
-            <ul  v-for="(item,indexZero) in kindInfo.floors" :key="indexZero">
-                <h3>{{item.name}}</h3>
-                <li v-for="(childOne,indexOne) in item.list" :key="indexOne">
-                    <a href="">
-                        <img :src="childOne.img" alt="">
-                        {{childOne.name}}
-                    </a>
-                </li>
-            </ul>
-        </div> -->
->>>>>>> huanhuan
     </div>
 </template>
 <script>
@@ -66,17 +20,14 @@ export default {
     data(){
         return {
             kindInfo:JSON.parse(sessionStorage.getItem("kind"))||{},
-            index:0
+            index:0,
+            // px:["t","latest","sell","price_h"]
         }
     },
     created() {
         this.$observer.$on("handleright",(kindInfo)=>{
             this.kindInfo=kindInfo;
-<<<<<<< HEAD
-            // console.log(this.kindInfo);
-=======
             console.log(this.kindInfo);
->>>>>>> huanhuan
         })
     },
 }

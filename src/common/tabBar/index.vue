@@ -9,7 +9,6 @@
 				<i>{{item.text}}</i>
 			</router-link>
 		</div>
-
 </template>
 
 <script>
@@ -61,7 +60,6 @@ export default {
 	justify-content: space-around;
 	align-items: center;
 	background:#fff;
-	z-index: 100;
 }
 .bottom a{
 	width: 100%;
