@@ -15,6 +15,9 @@ module.exports = {
           target:'http://www.mangguozhe.com',
           changeOrigin:true
         },
+        "/users": {
+          target: "http://localhost:3000",
+        }
 
       }
     },

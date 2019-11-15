@@ -1,27 +1,36 @@
 <template>
   <div id="app">
-      <keep-alive>
-          <router-view></router-view>
-      </keep-alive>
-      <TabBar v-if="$route.meta.tabbarFlag"/>
+    <!-- <Headers v-if="$route.meta.headerflag"></Headers> -->
+    <keep-alive :exclude="/special/">
+      <router-view></router-view>
+    </keep-alive>
+    <Tabbar />
   </div>
 </template>
-
 <script>
-import TabBar from "./common/tabBar";
+// import Headers from "@common/components/headers";
+import Tabbar from "@common/tabBar"
 export default {
-  name:"App",
+  name: "App",
   components:{
-    TabBar
+    Tabbar
   }
-}
+};
+
 </script>
-<style>
-  #app{
+<style lang="scss">
+#app{
+  height: 100%;
+}
+  .page{
     position: absolute;
     left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    top: 0;
+    padding-bottom: .51rem;
+    padding-top: .44rem;
+    overflow: scroll;
   }
+
 </style>

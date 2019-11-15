@@ -9,7 +9,6 @@
 				<i>{{item.text}}</i>
 			</router-link>
 		</div>
-
 </template>
 
 <script>
@@ -26,7 +25,7 @@ export default {
                 {
                     text:"9.9包邮",
                     icon:"&#xe601;",
-					path:"/baoyou"
+					path:"/freeshipping"
                 },
                 {
                     text:"分类",
