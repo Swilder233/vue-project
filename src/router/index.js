@@ -4,6 +4,9 @@ import VueTouch from "vue-touch";
 import home from "./home";
 import mine from "./mine";
 import fengqiang from "./fengqiang";
+import xiangqing from "./xiangqing";
+
+
 // import { Swipe, SwipeItem } from 'vant';
 // Vue.use(Swipe).use(SwipeItem);
 Vue.use(VueRouter);
@@ -19,9 +22,14 @@ const router = new VueRouter({
             path:"/fengqiang",
             redirect:"/fengqiang/goods/4"
         },       
+        // {
+        //     path:"/xiangqing",
+        //     redirect:"/xiangqing/xqc"
+        // },       
         home,
         mine,
         fengqiang,
+        xiangqing
     ]
 })
 

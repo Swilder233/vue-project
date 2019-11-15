@@ -15,7 +15,8 @@
 			</div>
 			<div class="nav_center">
 			<ul class="caidan">
-				<li v-for="(item,index) in navList" :key="index"><a href="#">{{item.name}}</a></li>
+				<router-link v-for="(item,index) in navList" :key="index" :to="{name:'xqc',query:{id:item.id,index:index}}"
+				tag="li"><a href="#">{{item.name}}</a></router-link>
 			</ul>
 			</div>
 			<router-link class="iconfont nav_right" tag="a" to="/home/caidan">&#xe610;</router-link>

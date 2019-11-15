@@ -11,6 +11,10 @@ module.exports = {
           target:'https://m.lrts.me',
           changeOrigin:true
         },
+        '/index.php':{
+          target:'http://www.mangguozhe.com',
+          changeOrigin:true
+        },
 
       }
     },
