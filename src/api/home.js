@@ -80,16 +80,44 @@ export const findGoodsList = ()=>http({
         isWechat:0
     }
 })
-export const ceshi = ()=>http({
+export const youhuitoutiao = ()=>http({
     method:"get",
-    url:"/ajax/getBookMenu?bookId=42904&pageNum=1&pageSize=50&sortType=0",
-    // data:{
-    //     pageId:"1",
-    //     pageSize:"10",
-    //     entityId:"4",
-    //     type:"1",
-    //     version:"v1",
-    //     tuserId:"797808",
-    //     isWechat:0
-    // }
+    url:"/api/category/product/model-detail-by-model-id-new",
+    data:{
+        entityId:"4",
+        modelId:"12845",
+        proModelId:"13",
+        source:"3",
+        version:"v1",
+        tuserId:"797808",
+        isWechat:"0"
+    }
+})
+// 咚咚抢
+export const dongdongqiang = ()=>http({
+    method:"get",
+    url:"/api/category/product/model-detail-by-model-id-new",
+    data:{
+        entityId:"4",
+        modelId:"12846",
+        proModelId:"20",
+        source:"3",
+        version:"v1",
+        tuserId:"797808",
+        isWechat:"0"
+    }
+})
+// 大家都在领
+export const allList = ()=>http({
+    method:"get",
+    url:"/api/category/product/model-detail-by-model-id-new",
+    data:{
+        entityId:"4",
+        modelId:"12849",
+        proModelId:"16",
+        source:"3",
+        version:"v1",
+        tuserId:"797808",
+        isWechat:"0"
+    }
 })
