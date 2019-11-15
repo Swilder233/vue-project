@@ -1,7 +1,7 @@
 <template>
-
-
-  <ol class="goods-new row-s">
+<qing-scroll ref="scroll">
+<!-- <div class="content" ref="goodsbody"> -->
+   <ul class="goods-new row-s">
     <li class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
       <img :src="item.pic" alt />
       <h2 class="product_title">
@@ -26,174 +26,65 @@
         <span>评论{{(Number(item.comment)/10000).toFixed(1)}}万</span>
       </div>
     </li>
-  </ol>
+  </ul>
+  </qing-scroll>
+<!-- </div> -->
+ 
 </template>
 <script>
 import { freeInfoList } from "@api/freeShipping";
+// import BScroll from "better-scroll";
 export default {
   name: "jx1",
   data() {
     return {
       recommend: [],
-      n_id: 58,
-      ids: []
-      // list: []
     };
   },
   created() {
-    if (this.n_id.length == 0) {
-      let { n_id } = this.$route.query;
-      this.n_id = n_id;
-      this.handleGetGoodsList("nine/listajax", this.n_id, 1, "");
-    } else {
-      this.n_id = 58;
-      this.handleGetGoodsList("nine/listajax", this.n_id, 1, "");
-    }
+      this.handleGetGoodsList();
   },
   methods: {
     async handleGetGoodsList(r, n_id, page, cac_id) {
       //在这里要获取数据
-
+      n_id=n_id?n_id:58;
       let data1 = await freeInfoList(r, n_id, page, cac_id);
-
       this.recommend = data1.data.data;
-
-      // switch (
-      //   n_id //存到sessionStorage中
-      // ) {
-      //   case 58:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList1",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 65:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList2",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 296:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList3",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 597:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList4",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 604:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList5",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 611:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList6",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 618:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList7",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 625:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList8",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 8703:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList9",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 632:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList10",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      //   case 639:
-      //     sessionStorage.setItem(
-      //       "nineGoodsList11",
-      //       JSON.stringify(data1.data.data)
-      //     );
-      //     break;
-      // }
     }
   },
   beforeRouteUpdate(to, from, next) {
     let { n_id } = to.query;
     this.n_id = n_id;
-    // this.handleGetGoodsList("nine/listajax", n_id, 1, "");
-    this.ids.push(n_id);
-    console.log(this.ids);
-
-    // for (var n = 0; n < this.ids.length; n++) {
-    //   if (n_id == this.ids[n]) {
-    //     switch (
-    //       n_id //存到sessionStorage中
-    //     ) {
-    //       case 58:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList1"));
-    //         break;
-    //       case 65:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList2"));
-    //         break;
-    //       case 296:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList3"));
-    //         break;
-    //       case 597:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList4"));
-    //         break;
-    //       case 604:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList5"));
-    //         break;
-    //       case 611:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList6"));
-    //         break;
-    //       case 618:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList7"));
-    //         break;
-    //       case 625:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList8"));
-    //         break;
-    //       case 8703:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList9"));
-    //         break;
-    //       case 632:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList10"));
-    //         break;
-    //       case 639:
-    //          this.recommend=JSON.parse(sessionStorage.getItem("nineGoodsList11"));
-    //         break;
-    //     }
-    //   } else { 
-        this.handleGetGoodsList("nine/listajax", n_id, 1, "");
-        // console.log("again");
-    //   }
-    // }
-  }
+    this.handleGetGoodsList("nine/listajax", n_id, 1, "");
+  },
+  mounted(){
+        //  console.log(this.$refs.scroll);
+        this.$refs.scroll.handleScroll();
+        this.$refs.scroll.handlepullingDown(()=>{
+          console.log(12);
+              this.handleGetGoodsList("nine/listajax", 296, 1, "");
+        });
+      
+    }
+   
 };
 </script>
 <style>
-li:hover{
+/* li:hover{
   color: #fe0036;
   font-weight: bolder;
   border-bottom: 2px #fe0036 solid;
+} */
+.content{
+  height: 100%;
+  padding-bottom: .5rem;
 }
 .goods-new {
+  /* position: absolute; */
   display: flex;
   flex-wrap: wrap;
   background: #f0f0f0;
+  padding-bottom: .5rem; 
 }
 .goods-new .goods-new_items {
   width: 1.53rem;

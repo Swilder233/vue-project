@@ -2,7 +2,7 @@
   <div class="page">
     <Header :title="message" />
     <div class="kuanghuan">
-      <van-tabs>
+      <van-tabs  v-model="active" sticky>
       <van-tab   :to="{name:'feng',query:{id:item.id}}" v-for="(item,index) in timeList" :title="item.time + '疯抢'"   :key="index">
       </van-tab>
     </van-tabs>
@@ -70,7 +70,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
 .active {
   background: linear-gradient(to right, #ff9c00, #ff5d00);
 }
@@ -97,7 +97,9 @@ export default {
   top: 1.25rem;
   color: white;
   width: 100%;
-  
+  div{
+    width: 100%;
+  }
 }
 .kuanghuan .van-tabs .van {
   width: 0.64rem;

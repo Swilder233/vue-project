@@ -10,7 +10,7 @@
           <img class="icon-phone" src="@assets/img/phone.png" alt />
         </i>
         <div class="inputtext">
-          <input type="text" placeholder="手机号码" maxlength="11" name="phone" v-model="username" />
+          <input type="text" placeholder="用户名" v-model="username" />
           <i class="icon_font">
             <img src="@assets/img/chahao.png" alt />
           </i>
@@ -22,7 +22,7 @@
           <img class="icon-phone" src="@assets/img/lock.png" alt />
         </i>
         <div class="inputtext">
-          <input type="text" placeholder="密码" maxlength="11" name="phone" v-model="password" />
+          <input type="password" placeholder="密码" v-model="password" />
           <i class="icon_font">
             <img class="eye" src="@assets/img/eye.png" alt />
           </i>
@@ -30,15 +30,9 @@
         <p class="input_msg">密码格式</p>
       </div>
       <div class="col-mar login_submit">
-        <v-touch
-          tag="input"
-          class="btn btn-default btn-block btn-max"
-          value="注册"
-          @tap="register($event)"
-        />
+        <v-touch tag="div" class="btn btn-default btn-block btn-max" value="注册" @tap="register()">注册</v-touch>
       </div>
     </form>
-
     <p>
       已有账号？点击
       <router-link to="/login" tag="span" class="col-link">登录</router-link>
@@ -52,116 +46,72 @@
   </div>
 </template>
 <script>
-// import { userInfoList } from "@api/register";
-// import {mapState,mapActions,mapMutations} from 'vuex'
-// import server from "@utils/request";
-import axios from "axios";
-import Qs from "qs";
-
+import { registerInfoList } from "@api/register";
 export default {
   name: "register",
   data() {
     return {
       username: "",
-      password: "",
-      tishi: "",
-      showTishi: "",
-      storage:" "
+      password: ""
     };
   },
   methods: {
     back() {
       this.$router.back();
     },
-    // register(e) {
-    //   if (this.username == "" || this.password == "") {
-    //     alert("请输入用户名或密码");
-    //   } else {
-    //     axios({
-    //       method: "post",
-    //       url: "http://localhost:3000/list",
-    //       data: {
-    //         username: this.username,
-    //         password: this.password
-    //       },
-    //       transformRequest: [
-    //         function(data) {
-    //           // 对 data 进行任意转换处理
-    //           return Qs.stringify(data);
-    //         }
-    //       ],
-    //       headers: {
-    //         deviceCode: "A95ZEF1-47B5-AC90BF3"
-    //       }
-    //       // headers: { "Content-Type": "application/x-www-form-urlencoded" }
-    //       // Content-Type':'application/x-www-form-urlencoded',
-    //     })
-    //       .then(res => {
-    //         console.log(123);
-    //         if (res.data == -1) {
-    //           this.tishi = "该账号已存在";
-    //           this.showTishi = true;
-    //           this.username = "";
-    //           this.password = "";
-    //         } else if (res.status == 200) {
-    //           this.tishi = "注册成功";
-    //           this.showTishi = true;
-    //           this.username = "";
-    //           this.password = "";
-    //           /*注册成功之后再跳回登录页*/
-    //           setTimeout(
-    //             function() {
-    //               this.showRegister = false;
-    //               this.showLogin = true;
-    //               this.showTishi = false;
-    //             }.bind(this),
-    //             2000
-    //           );
-    //         }
-    //       })
-    //       .catch(err => {
-    //         console.log(err);
-    //       });
-    //   }
-    // }
-       register(e){
-     e.preventDefault();
-       var obj={};
-       obj.name=this.username;
-       obj.password=this.password;
-       console.log(obj);
-              // this.storage=null;
-            //获取
-                // this.storage=window.localStorage.getItem("user");
-            //  if(!this.storage){
-            //      this.storage=[];
-            //  }else{
-            //     this.storage=JSON.parse(this.storage);
-            //  }
-        localStorage.setItem("user",JSON.stringify(obj))
-     }
-  }
-  //  loginUser(e){
-  //    e.preventDefault();
-  //      var obj={};
-  //      obj.name="this.username";
-  //      obj.password="this.password";
-  //      console.log(obj);
-  //      sessionStorage.setItem("user",JSON.stringify(obj))
+    async register(username, password) {
+      //在这里要获取数据
+      let data1 = await registerInfoList(this.username, this.password);
+      if (data1.data.status == 1) {
+        alert(data1.data.info);
+        this.$router.push("login");
+        this.username = "";
+        this.password = "";
+      } else {
+        alert(data1.data.info);
+        this.username = "";
+        this.password = "";
+      }
+    }
 
-  // created() {
-  //     server({
-  //       method:"post",
-  //       url:"/ajax/filterCinemas",
-  //       data:{
-  //         movieId:1250952,
-  //         day:"2019-11-05"
-  //       }
-  //     }).then((data)=>{
-  //       console.log(data,1111);
-  //     }).catch((err)=>{
-  //       console.log(err);
-  //     }),
+    //    register(e){
+    //      e.preventDefault();
+    //    var obj={};
+    //    obj.name=this.username;
+    //    obj.password=this.password;
+    //    if (this.username == "" || this.password == "") {
+    //     alert("请输入用户名或密码");
+    //   } else if(!(/^1[3456789]\d{9}$/.test(this.username))){
+    //         alert("手机号码格式不正确")
+    //         this.username="";
+    //    this.password="";
+    //   }else if( !(/^(\w){6,20}$/).test(this.password) ){
+    //     //校验密码：只能输入6-20个字母、数字、下划线
+    //     alert("密码只能输入6-20个字母、数字、下划线 ")
+    //       this.username="";
+    //    this.password="";
+    //   } else{
+    //     if(this.username==this.storage.name && this.password==this.storage.password){
+    //       alert("不能重复注册哦")
+    //     }else{
+    //       alert("注册成功,正在前往登录...");
+    //       sessionStorage.setItem("user",JSON.stringify(obj));
+    //         this.$router.push("login");
+    //     }
+
+    //   }
+    //   //  console.log(obj);
+    //           // this.storage=null;
+    //         //获取
+    //             // this.storage=window.localStorage.getItem("user");
+    //         //  if(!this.storage){
+    //         //      this.storage=[];
+    //         //  }else{
+    //         //     this.storage=JSON.parse(this.storage);
+    //         //  }
+    //     // localStorage.setItem("user",JSON.stringify(obj))
+    //  }
+  }
 
   //注册
 };
@@ -182,6 +132,10 @@ export default {
 //  }
 </script>
 <style lang="scss">
+.btn {
+  line-height: 0.37rem;
+  text-align: center;
+}
 .hgroup {
   height: 100%;
   background: white;
@@ -254,7 +208,7 @@ input {
   z-index: 1;
   font-size: 0.14rem;
   color: #fc3f78;
-  // opacity: 0;
+  opacity: 0;
   transition: all 0.4s ease-out 0s;
   -o-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;

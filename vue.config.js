@@ -15,7 +15,7 @@ module.exports = {
           target:'http://m.maoyan.com',
           changeOrigin:true
         },
-        "/list": {
+        "/users": {
           target: "http://localhost:3000",
         }
 

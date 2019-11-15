@@ -59,7 +59,7 @@
       </van-tab>
     </van-tabs>
    
-    <ul class="choose">
+    <!-- <ul class="choose"> -->
     
       <!-- <v-touch></v-touch> -->
      
@@ -104,7 +104,7 @@
         <b>文娱车品</b>
       </router-link> -->
      
-    </ul>
+    <!-- </ul> -->
     <!-- 近一小时疯抢 -->
     <!-- <div class="nine_comlist">
       <h3 class="nine_h3bt">
@@ -211,6 +211,7 @@
         alt
       />
     </h3>
+    
     <!-- 精选推荐 -->
    <router-view></router-view>
   </div>

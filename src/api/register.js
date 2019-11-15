@@ -1,10 +1,18 @@
 import http from "@utils/request";
 
-export const userInfoList = (name="",password="") => http({
-    method: "post",
-    url: "http://localhost:3000",//精选
+export const registerInfoList = (username="",password="") => http({
+    method: "POST",
+    url: "/users/register",//注册
     data: {
-       name:name,
-       password:password,
+        username,
+        password
+    }
+})
+export const loginInfoList = (username="",password="") => http({
+    method: "POST",
+    url: "/users/login",//登录
+    data: {
+        username,
+        password
     }
 })

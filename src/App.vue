@@ -6,7 +6,6 @@
     </keep-alive>
     <Tabbar />
   </div>
-
 </template>
 <script>
 // import Headers from "@common/components/headers";

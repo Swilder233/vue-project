@@ -13,7 +13,7 @@
         />
       </div>
     </div>
-    <van-tabs animated>
+    <van-tabs class="content">
       <van-tab
         :to="{name:'meiri',query:{id:item.id}}"
         v-for="(item,index) in timeList"
@@ -61,6 +61,12 @@ export default {
 };
 </script>
 <style lang="scss">
+.content{
+    // position: sticky;
+    // top: .1rem;
+    // z-index: 10;
+    // background: 
+}
 .ranking_nav_tab {
   height: 0.44rem;
   width: 100%;

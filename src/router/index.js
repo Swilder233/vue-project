@@ -8,14 +8,18 @@ const router = new VueRouter({
     mode: "hash",
     routes: [
         freeshipping,
+        
+        // search,
         {
-            path: "/mine",
-            component: _ => import("@pages/mine"),//我的
-            name: "mine",
-            meta: {
-                tabbarFlag: true,
+            path:"/mine",
+            component:()=>import("@pages/mine"),
+            name:"mine",
+            meta:{
+                headerFlag:false,
+                tabbarFlag:true,
             }
         },
+      
         {
             path: "/special",
             component: _ => import("@pages/special"),//专区
@@ -47,6 +51,14 @@ const router = new VueRouter({
             meta: {
                 tabbarFlag: false
             }
+        },
+        {
+            path: "/search",
+            component: _ => import("@pages/search"),//搜索
+            name: "search",
+            meta: {
+                tabbarFlag: false,
+            }  
         },
         {
             path: "/half",
@@ -86,6 +98,7 @@ const router = new VueRouter({
                 },
             ]
         },
+       
         {
             path: "/list",
             component: _ => import("@pages/list"),

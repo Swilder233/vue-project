@@ -2,8 +2,8 @@
   <div class="hgroup">
     <div class="header">
       <!-- <i class="iconfont">&#xe605;</i> -->
-       <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
-        <span>登录</span>
+      <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
+      <span>登录</span>
     </div>
     <form action>
       <div class="col-mar form_input_item">
@@ -11,7 +11,7 @@
           <img class="icon-phone" src="@assets/img/phone.png" alt />
         </i>
         <div class="inputtext">
-          <input type="text" placeholder="手机号码" maxlength="11" name="phone" />
+          <input type="text" placeholder="用户名" v-model="username" />
           <i class="icon_font">
             <img src="@assets/img/chahao.png" alt />
           </i>
@@ -23,7 +23,7 @@
           <img class="icon-phone" src="@assets/img/lock.png" alt />
         </i>
         <div class="inputtext">
-          <input type="text" placeholder="密码" maxlength="11" name="phone" />
+          <input type="password" placeholder="密码" v-model="password" />
           <i class="icon_font">
             <img class="eye" src="@assets/img/eye.png" alt />
           </i>
@@ -31,7 +31,7 @@
         <p class="input_msg">密码格式</p>
       </div>
       <div class="col-mar login_submit">
-        <input type="submit" class="btn btn-default btn-block btn-max" value="登录" />
+        <v-touch tag="div" class="btn btn-default btn-block btn-max" @tap="login()">登录</v-touch>
       </div>
     </form>
 
@@ -48,19 +48,44 @@
   </div>
 </template>
 <script>
+import { loginInfoList } from "@api/register";
 export default {
   name: "login",
-   methods:{
-       back(){
-            this.$router.back();
-       }
-   }
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    back() {
+      this.$router.back();
+    },
+    async login(username, password) {
+      //在这里要获取数据
+      let data1 = await loginInfoList(this.username, this.password);
+      if (data1.data.status == 1) {
+        alert(data1.data.info);
+        this.username = "";
+        this.password = "";
+         this.$router.push("home");
+      } else {
+        alert(data1.data.info);
+        this.username = "";
+        this.password = "";
+      }
+    }
+  }
 };
 </script>
 <style lang="scss">
-.hgroup{
-    height: 100%;
-    background: white;
+.btn {
+  line-height: 0.37rem;
+  text-align: center;
+}
+.hgroup {
+  height: 100%;
+  background: white;
 }
 .header {
   height: 0.45rem;
@@ -75,17 +100,17 @@ export default {
   left: 0.2rem;
   top: 0.02rem;
   color: #333;
-  font-size: .18rem;
+  font-size: 0.18rem;
 }
 form {
   width: 100%;
   height: 1.83rem;
   background: white;
-  margin-top: .1rem;
+  margin-top: 0.1rem;
 }
 .form_input_item {
   margin: 0 0.28rem;
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
   height: 0.25rem;
   border-bottom: solid 1px #eee;
   position: relative;
@@ -97,8 +122,7 @@ form {
   -moz-transition: all 0.4s ease-out 0s;
   -webkit-transition: all 0.4s ease-out 0s;
   transform-origin: center;
-   padding:.02rem;
-  
+  padding: 0.02rem;
 }
 .form_input_item .iconfont {
   position: absolute;
@@ -108,7 +132,6 @@ form {
   position: absolute;
   z-index: 1;
   right: 0;
- 
 }
 .form_input_item .eye {
   position: relative;
@@ -118,12 +141,12 @@ form {
   width: 0.15rem;
 }
 input {
-    border: none;
-//   margin-left: 0.25rem;
-//   margin-top: -0.1rem;
-    left: .3rem;
-    position: absolute;
-     height: .25rem;
+  border: none;
+  //   margin-left: 0.25rem;
+  //   margin-top: -0.1rem;
+  left: 0.3rem;
+  position: absolute;
+  height: 0.25rem;
 }
 .input_msg {
   height: 0.25rem;
@@ -132,7 +155,7 @@ input {
   z-index: 1;
   font-size: 0.14rem;
   color: #fc3f78;
-  // opacity: 0;
+  opacity: 0;
   transition: all 0.4s ease-out 0s;
   -o-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;
@@ -142,7 +165,7 @@ input {
   transform: translateY(-0.1rem) translateX(0);
   /* line-height: 1.8rem; */
 }
-.inputtext input{
+.inputtext input {
   outline: none;
   margin-top: -0.05rem;
 }
@@ -170,7 +193,7 @@ p {
   background: white;
   font-size: 0.14rem;
   font-family: Arial, Helvetica, sans-serif, "Microsoft YaHei";
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 }
 .col-link {
   color: #1991eb;
