@@ -12,7 +12,8 @@ import LoadingView from "./index.vue";
          document.body.appendChild(this.loadingVm.$mount().$el);
      }
      loadingDestroy(){
-         document.body.removeChild(this.loadingVm.$mount().$el);
+        //  document.body.removeChild(this.loadingVm.$mount().$el);
+        this.loadingVm.$mount().$el.remove();
      }
  }
 

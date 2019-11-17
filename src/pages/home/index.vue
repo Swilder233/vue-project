@@ -9,13 +9,17 @@
 		</div>
 
         <div class="nav">
-            <router-view></router-view>
+			<keep-alive>
+				<router-view></router-view>
+			</keep-alive>
+            
 			<div class="nav_left">
 				<a href="#">精选</a>
 			</div>
 			<div class="nav_center">
 			<ul class="caidan">
-				<li v-for="(item,index) in navList" :key="index"><a href="#">{{item.name}}</a></li>
+				<router-link v-for="(item,index) in navList" :key="index" :to="{name:'xqc',query:{id:item.id,index:index}}"
+				tag="li"><a href="#">{{item.name}}</a></router-link>
 			</ul>
 			</div>
 			<router-link class="iconfont nav_right" tag="a" to="/home/caidan">&#xe610;</router-link>
@@ -32,10 +36,31 @@
         <!-- 优惠 -->
         <div class="youhui">
 			<ul>
-				<router-link v-for="(item,index) in youhuiList" :key="index" to="fengqiang" tag="li">
-					<img :src="item.address" alt="">
-					<span>{{item.name}}</span>
+				<!-- <router-link :to="youhuiList[0].place" tag="li">
+					<img :src="youhuiList[0].address" alt="">
+					<span>{{youhuiList[0].name}}</span>
+				</router-link> -->
+				<router-link to="/fengqiang" tag="li">
+					<img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="">
+					<span>疯抢排行</span>
 				</router-link>
+				<router-link to="/" tag="li">
+					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN018sPcWK2JJhy38xfum_!!2053469401.png" alt="">
+					<span>9.9包邮</span>
+				</router-link>
+				<router-link to="/" tag="li">
+					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01ptnbDO2JJhybcK39o_!!2053469401.gif" alt="">
+					<span>品牌特卖</span>
+				</router-link>
+				<router-link to="/" tag="li">
+					<img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01C0wivK2JJhxxaqA66_!!2053469401.png" alt="">
+					<span>每日半价</span>
+				</router-link>
+				<router-link to="/" tag="li">
+					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN011npPe82JJhy3KUj5q_!!2053469401.png" alt="">
+					<span>折上折</span>
+				</router-link>
+
 			</ul>
 		</div>
 
@@ -50,9 +75,6 @@
 							{{item.name}}
 					</van-swipe-item>
 				</van-swipe>
-						<!-- <p>
-							
-						</p> -->
 						<i>&gt;</i>
 				
 			</div>
@@ -169,22 +191,13 @@
 </template>
 
 <script>
-import {homeCaidan} from "@api/home";
-import {homeGoodsList} from "@api/home";
-import {youhuiList} from "@api/home";
-import {pinpaiList} from "@api/home";
-import {findGoodsList} from "@api/home";
-import {swiperList} from "@api/home";
-import {youhuitoutiao} from "@api/home";
-import {dongdongqiang} from "@api/home";
-import {allList} from "@api/home";
+import {homeCaidan,homeGoodsList,pinpaiList,findGoodsList,swiperList,youhuitoutiao,dongdongqiang,allList} from "@api/home";
 export default {
     name:"home",
     data(){
         return{
             navList:[],
             goodsList:[],
-            youhuiList:[],
             pinpaiList:[],
             findGoodsList:[],
 			swiperList:[],
@@ -202,11 +215,6 @@ export default {
         let goods = await homeGoodsList();
         this.goodsList = goods.data;
         // console.log(goods.data);
-        // 获取到优惠的信息
-        let youhui  = await youhuiList();
-		this.youhuiList = youhui.data.config.data;
-		console.log(this.youhuiList);
-		this.youhuiList[0].path="/fengqiang"
         // 品牌特卖
         let pinpai  = await pinpaiList();
         this.pinpaiList = pinpai.data.config;
@@ -236,7 +244,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .top{
         width: 100%;
         position: absolute;

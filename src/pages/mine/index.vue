@@ -18,12 +18,12 @@
         <v-touch tag="span" @tap="handleExit()" class="exit">退出登录</v-touch>
       </div>
       <div class="else">
-        <a href="#">
+        <router-link href="#" tag="a" to="/shezhi">
           <img
             src="https://cmsstatic.ffquan.cn//wap_new/user/images/icon/user_icon_set.svg?v=201911081848"
             alt
           />
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="user_main">
@@ -58,13 +58,13 @@
             <span>领券帮助</span>
           </li>
 
-          <li class="col-12-3">
+          <router-link to="/yijian" tag="li" class="col-12-3">
             <img
               src="https://cmsstatic.ffquan.cn//wap_new/user/images/integral/tools4.png?v=201801221043"
               alt
             />
             <span>意见反馈</span>
-          </li>
+          </router-link>
         </ul>
       </div>
     </div>

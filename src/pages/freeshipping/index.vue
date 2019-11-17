@@ -59,6 +59,7 @@
       </van-tab>
     </van-tabs>
    
+
     <div class="ov_h"></div>
 
     <h3 class="h3bt_bg">
@@ -86,6 +87,14 @@ export default {
   },
   data() {
     return {
+      created(){
+        // this.handleReload();
+      },
+      methods: {
+        handleReload(){
+          // window.location.reload();
+        }
+      },
       message:"9.9包邮",
       btns:[
         {
