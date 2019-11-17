@@ -90,7 +90,7 @@ export default {
 }
 .right h2{
     font-size:.14rem;
-}
+    padding-right: .03rem;}
 .right h2 span{
     min-width: 26px;
     height: .14rem;

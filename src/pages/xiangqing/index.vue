@@ -2,10 +2,10 @@
     <div>
          <!-- 头部 -->
     <div class="top">
-        <div class="header">
-            <div class="back">&lt;</div>
+        <div class="toubu">
+            <div class="back iconfont" @click="handleBack()">&#xe605;</div>
                 <div class="title">{{caidanList[active].name}}</div>
-            <div class="icon iconfont">&#xe606;</div>
+            <div class="icon iconfont" @click="handleCaidan()">&#xe606;</div>
         </div>
 
         <!-- 菜单 -->
@@ -33,13 +33,15 @@
 
 <script>
 import {caidanList} from "@api/xiangqing";
+import MessageBox from "../../lib/messageBox/index.js";
 export default {
     name:"xiangqing",
     data(){
         return{
-            caidanList:[],
-            index:"",
-            active:"",
+            caidanList:[{name:"美妆"}],
+            index:"0",
+            active: "0",
+            flag:false,
             goodsSort:[
                 {
                     name:"人气",
@@ -61,25 +63,54 @@ export default {
         }
     },
     async created(){
+      
         let {id,index} = this.$route.query;
-        console.log(index);
+        console.log(index,id);
         let caidan = await caidanList();
         this.caidanList = caidan.data;
         this.handleSendId(id,index);
         
-        console.log(id);
+        
+        // console.log(id);
     },
     methods:{
+        handleBack(){
+            this.$router.back();
+            this.$destroy();
+        },
         handleSendId(id,index){
+
             this.active =index;
-            console.log(index);
+            localStorage.setItem("index",JSON.stringify(index));
+            // console.log();
+        },
+        handleCaidan(){
+            // if(this.flag == 0){
+            //      MessageBox({
+            //          flag:true
+            //      });
+            //      this.flag = 1;
+            // }else{
+            //     // massageDestroy();
+            //     // console.log(this);
+            //     alert("111");
+            //      MessageBox({
+            //          flag:false
+            //      });
+            //      this.flag = 0;
+            // }
+            console.log(this.flag);
+            this.flag =!this.flag;
+            MessageBox({
+                     flag:this.flag
+                 });
         }
     }
 }
 </script>
 
 
-<style>
+<style scoped>
     .top{
     position: fixed;
     top: 0;
@@ -88,7 +119,7 @@ export default {
 }
 
 /* 头部 */
-.header{
+.toubu{
     background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);
     border-bottom-color: transparent;
     padding: .08rem .1rem;

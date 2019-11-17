@@ -59,145 +59,7 @@
       </van-tab>
     </van-tabs>
    
-    <!-- <ul class="choose"> -->
-    
-      <!-- <v-touch></v-touch> -->
-     
-      <!-- <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:58}}" >
-        <b>精选</b>
-      </router-link>
-      
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:65}}">
-        <b>居家百货</b>
-      </router-link>
 
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:296}}">
-        <b>美食</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:597}}">
-        <b>服装</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:604}}">
-        <b>配饰</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:611}}">
-        <b>美妆</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:618}}">
-        <b>内衣</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:625}}">
-        <b>母婴</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:8703}}">
-        <b>箱包</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:632}}">
-        <b>数码配件</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:639}}">
-        <b>文娱车品</b>
-      </router-link> -->
-     
-    <!-- </ul> -->
-    <!-- 近一小时疯抢 -->
-    <!-- <div class="nine_comlist">
-      <h3 class="nine_h3bt">
-        <img
-          src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_tab_left.svg?v=20191084829689"
-          alt
-        />
-        <span class="feng">近一小时疯抢</span>
-        <img
-          src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_tab_right.svg?v=20191084829689"
-          alt
-        />
-      </h3>
-      <ul class="swiper-wrapper">
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-      </ul>
-    </div> -->
     <div class="ov_h"></div>
 
     <h3 class="h3bt_bg">
@@ -225,6 +87,14 @@ export default {
   },
   data() {
     return {
+      created(){
+        // this.handleReload();
+      },
+      methods: {
+        handleReload(){
+          // window.location.reload();
+        }
+      },
       message:"9.9包邮",
       btns:[
         {

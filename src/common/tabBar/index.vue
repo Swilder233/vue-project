@@ -60,6 +60,7 @@ export default {
 	justify-content: space-around;
 	align-items: center;
 	background:#fff;
+	z-index: 99999;
 }
 .bottom a{
 	width: 100%;

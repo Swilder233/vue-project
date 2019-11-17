@@ -4,7 +4,7 @@
     <keep-alive :exclude="/special/">
       <router-view></router-view>
     </keep-alive>
-    <Tabbar />
+    <Tabbar v-if="$route.meta.tabbarFlag"/>
   </div>
 </template>
 <script>

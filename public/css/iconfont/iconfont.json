@@ -13,11 +13,32 @@
       "unicode_decimal": 58899
     },
     {
+      "icon_id": "1119361",
+      "name": "意见反馈(1)",
+      "font_class": "yijianfankui1",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "1308970",
+      "name": "911菜单_反馈",
+      "font_class": "911caidan_fankui",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
       "icon_id": "1639747",
       "name": "消息",
       "font_class": "message",
       "unicode": "e600",
       "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1687271",
+      "name": "客服",
+      "font_class": "ziyuan",
+      "unicode": "e634",
+      "unicode_decimal": 58932
     },
     {
       "icon_id": "2063200",
@@ -34,11 +55,32 @@
       "unicode_decimal": 58881
     },
     {
+      "icon_id": "2570120",
+      "name": "反馈",
+      "font_class": "fankui",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "2680657",
+      "name": "反馈",
+      "font_class": "fankui1",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
       "icon_id": "3040879",
       "name": "右箭头",
       "font_class": "arrow-sl",
       "unicode": "e715",
       "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "3248632",
+      "name": "反馈",
+      "font_class": "fankui2",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
     },
     {
       "icon_id": "3274883",
@@ -83,6 +125,13 @@
       "unicode_decimal": 58883
     },
     {
+      "icon_id": "7347767",
+      "name": "咨询，在线客服，沟通，聊天",
+      "font_class": "huaban-",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
       "icon_id": "7438853",
       "name": "天猫 tmall",
       "font_class": "tianmaotmall",
@@ -116,6 +165,13 @@
       "font_class": "shoucang",
       "unicode": "e609",
       "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "10722472",
+      "name": "在线客服 customer service",
+      "font_class": "zaixiankefucustomerservice",
+      "unicode": "e636",
+      "unicode_decimal": 58934
     },
     {
       "icon_id": "11393184",

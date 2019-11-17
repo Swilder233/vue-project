@@ -5,6 +5,7 @@ import home from "./home";
 import mine from "./mine";
 import fengqiang from "./fengqiang";
 import xiangqing from "./xiangqing";
+import shezhi from "./shezhi";
 
 
 // import { Swipe, SwipeItem } from 'vant';
@@ -20,9 +21,17 @@ const router = new VueRouter({
     routes: [
         freeshipping,
         kind,
+        shezhi,
+        {
+            path: "/",
+            component: _ => import("@pages/home"),
+            name: "home",
+            redirect:"/home",
+            meta: {
+                tabbarFlag: true,
+            }
+        },
         // search,
-     
-      
         {
             path: "/special",
             component: _ => import("@pages/special"),//专区
@@ -99,6 +108,15 @@ const router = new VueRouter({
                         }
                     },
                 ]
+            },
+            {
+                path:"/yijian",
+                component:_=>import("@pages/yijian"),
+                name:"yijian",
+                meta:{
+                    headerFlag:false,
+                    tabbarFlag:false,
+                },
             },
         
         // 分类下的列表
