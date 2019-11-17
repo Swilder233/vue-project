@@ -1,6 +1,6 @@
 <template>
   <div class="hgroup">
-    <div class="header">
+    <div class="head">
       <!-- <i class="iconfont">&#xe605;</i> -->
       <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
       <span>登录</span>
@@ -12,9 +12,9 @@
         </i>
         <div class="inputtext">
           <input type="text" placeholder="用户名" v-model="username" />
-          <i class="icon_font">
+          <v-touch tag="i" class="icon_font" @tap="handleDel()">
             <img src="@assets/img/chahao.png" alt />
-          </i>
+          </v-touch>
         </div>
         <p class="input_msg">请输入正确11位的手机号码！</p>
       </div>
@@ -23,10 +23,10 @@
           <img class="icon-phone" src="@assets/img/lock.png" alt />
         </i>
         <div class="inputtext">
-          <input type="password" placeholder="密码" v-model="password" />
-          <i class="icon_font">
+          <input :type="showPass==false?'password':'text' " placeholder="密码" v-model="password" />
+          <v-touch tag="i" class="icon_font" @tap="handleLook()">
             <img class="eye" src="@assets/img/eye.png" alt />
-          </i>
+          </v-touch>
         </div>
         <p class="input_msg">密码格式</p>
       </div>
@@ -54,21 +54,39 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      showPass: false
     };
   },
   methods: {
     back() {
       this.$router.back();
     },
+    handleDel() {
+      this.username = "";
+    },
+    handleLook() {
+      this.showPass = !this.showPass;
+    },
     async login(username, password) {
       //在这里要获取数据
       let data1 = await loginInfoList(this.username, this.password);
       if (data1.data.status == 1) {
         alert(data1.data.info);
+
+        var obj = {
+          username: this.username
+        };
+        if (Cookies.get("token")) {
+          //如果是读取到了token那么就可以跳往首页
+          localStorage.setItem("name", JSON.stringify(obj));
+          this.$router.push("mine");
+        } else {
+          ///否则只能在登录注册页面
+          this.$router.push("login");
+        }
         this.username = "";
         this.password = "";
-         this.$router.push("home");
       } else {
         alert(data1.data.info);
         this.username = "";
@@ -87,7 +105,7 @@ export default {
   height: 100%;
   background: white;
 }
-.header {
+.head {
   height: 0.45rem;
   background: white;
   text-align: center;
@@ -95,7 +113,7 @@ export default {
   position: relative;
   height: 1rem;
 }
-.header i {
+.head i {
   position: absolute;
   left: 0.2rem;
   top: 0.02rem;

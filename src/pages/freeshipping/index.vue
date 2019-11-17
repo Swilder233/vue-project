@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <Header :title="message"/>
-    <div class="section">
+    <div class="section_free">
       <ul>
         <router-link tag="li" :to="{name:'special',query:{n_id:2,title:'9块9每日精选'}}">
           <img
@@ -59,145 +59,6 @@
       </van-tab>
     </van-tabs>
    
-    <!-- <ul class="choose"> -->
-    
-      <!-- <v-touch></v-touch> -->
-     
-      <!-- <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:58}}" >
-        <b>精选</b>
-      </router-link>
-      
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:65}}">
-        <b>居家百货</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:296}}">
-        <b>美食</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:597}}">
-        <b>服装</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:604}}">
-        <b>配饰</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:611}}">
-        <b>美妆</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:618}}">
-        <b>内衣</b>
-      </router-link>
-
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:625}}">
-        <b>母婴</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:8703}}">
-        <b>箱包</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:632}}">
-        <b>数码配件</b>
-      </router-link>
-      <router-link class="choose_li"  tag="li" :to="{name:'jx1',query:{n_id:639}}">
-        <b>文娱车品</b>
-      </router-link> -->
-     
-    <!-- </ul> -->
-    <!-- 近一小时疯抢 -->
-    <!-- <div class="nine_comlist">
-      <h3 class="nine_h3bt">
-        <img
-          src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_tab_left.svg?v=20191084829689"
-          alt
-        />
-        <span class="feng">近一小时疯抢</span>
-        <img
-          src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_tab_right.svg?v=20191084829689"
-          alt
-        />
-      </h3>
-      <ul class="swiper-wrapper">
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-        <li class="swiper-slide">
-          <img
-            src="https://img.alicdn.com/imgextra/i1/2201195930685/O1CN01c9EkUU1Gvlrd6J7sG_!!2201195930685.jpg_310x310.jpg"
-            alt
-          />
-          <p class="text">疯抢 6754 件</p>
-          <p class="name">【拍6件】网红日本海盐饼干600g</p>
-          <p class="money">
-            <span>¥18.88</span>
-          </p>
-        </li>
-      </ul>
-    </div> -->
     <div class="ov_h"></div>
 
     <h3 class="h3bt_bg">
@@ -277,143 +138,60 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.section ul {
+<style lang="scss" scoped>
+.section_free ul {
   display: flex;
   flex-wrap: wrap;
 }
-.section ul li {
+.section_free ul li {
   display: flex;
   position: relative;
 }
-.section ul li h3 {
+.section_free ul li h3 {
   position: absolute;
   font-weight: 400;
   color: #fc4073;
   font-size: 0.14rem;
   padding: 5px 0 0 5px;
 }
-.section ul li p {
+.section_free ul li p {
   position: absolute;
   font-size: 0.12rem;
   color: #888888;
   top: 0.23rem;
   left: 0.05rem;
 }
-.section ul li:nth-of-type(1) img {
+.section_free ul li:nth-of-type(1) img {
   width: 1.6rem;
   height: 0.8rem;
 }
-.section ul li:nth-of-type(4) img {
+.section_free ul li:nth-of-type(4) img {
   width: 1.6rem;
   height: 0.8rem;
 }
-.section ul li img {
+.section_free ul li img {
   width: 0.8rem;
   height: 0.8rem;
 }
 
-// .choose {
-//   /* width: 10rem; */
-//   height: 0.54rem;
-//   display: flex;
-//   overflow: auto;
-//   border-top: 1px #e9e6e6 solid;
-//   border-bottom: 1px #e9e6e6 solid;
-//   background: white;
-//   position: sticky;
-//   top: 0;
-//   z-index: 10
-// }
-// .choose .choose_li {
-//   display: flex;
-//   margin-right: 0.1rem;
-//   margin-left: 0.1rem;
-//   height: 0.50rem;
-//   width: 0.86rem;
-//   // padding: 0 0.1rem;
-// }
-// .choose .choose_li b {
-//   font-size: 0.14rem;
-//   font-weight: 400;
-//   display: inline-block;
-//   width: 0.6rem;
-//   height: 0.54rem;
-//   line-height: 0.54rem;
-//   text-align: center;
-// }
-// .choose .active{
-//   color: #fc4073;
-// }
-
-
 // 近一小时疯抢
-.nine_comlist {
-}
-.nine_comlist .nine_h3bt {
-  height: 0.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: normal;
-  background: white;
-  /* clear: both; */
-}
-.nine_comlist .nine_h3bt span {
-  padding: 0 0.1rem;
-  font-size: 0.15rem;
-  color: #fc436d;
-}
-.swiper-wrapper {
-  display: flex;
-  overflow: auto;
-  border-top: 1px #e9e6e6 solid;
-  border-bottom: 1px #e9e6e6 solid;
-  background: white;
-}
-.swiper-wrapper .swiper-slide {
-  display: flex;
-  margin-right: 0.1rem;
-  height: 100%;
-  flex-direction: column;
-  width: 0.83rem;
-  margin-right: 0.1rem;
-}
-.swiper-wrapper .swiper-slide img {
-  width: 0.83rem;
-  height: 0.83rem;
-}
-.swiper-wrapper .swiper-slide .text {
-  border-radius: 0 0 0.02rem 0.05rem;
-  text-align: center;
-  text-indent: 0.2em;
-  background: #fff3f3;
-  border: 1px solid #ffbdbf;
-  color: #fc4d52;
-  font-size: 10px;
-  overflow: hidden;
-  height: 14px;
-  line-height: 14px;
-}
-.swiper-wrapper .swiper-slide .name {
-  font-size: 0.11rem;
-  padding: 0.05rem 0 0;
-  margin-bottom: 0.05rem;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  color: #666;
-}
-.swiper-wrapper .swiper-slide .money {
-  color: #ff2b22;
-  font-size: 0.14rem;
-  overflow: hidden;
-  margin: 0 0 0.05rem;
-  width: 1rem;
-}
+// .nine_comlist {
+// }
+// .nine_comlist .nine_h3bt {
+//   height: 0.4rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-weight: normal;
+//   background: white;
+//   /* clear: both; */
+// }
+// .nine_comlist .nine_h3bt span {
+//   padding: 0 0.1rem;
+//   font-size: 0.15rem;
+//   color: #fc436d;
+// }
+// 
 
 .ov_h {
   height: 0.05rem;

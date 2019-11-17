@@ -17,6 +17,16 @@ const router = new VueRouter({
         kind,
         // search,
      
+        {
+            path:"/mine",
+            component:()=>import("@pages/mine"),
+            name:"mine",
+            meta:{
+                headerFlag:false,
+                tabbarFlag:true,
+                requiredAuth:true
+            }
+        },
       
         {
             path: "/special",
@@ -147,4 +157,18 @@ const router = new VueRouter({
     ]
 })
 
-export default router;
+        //全局守卫进行token判断
+    router.beforeEach((to,from,next)=>{
+        if(to.path != "/login" && to.meta.requiredAuth){
+            console.log(111)
+            if(document.cookie.indexOf("token")==0){
+                next();
+                
+            }else{
+                next({name:"login",params:{path:to.path}});
+            }
+        }else{
+            next();
+        }
+    })
+export default router

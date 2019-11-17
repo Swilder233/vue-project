@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="header">
-        <i class="iconfont">&#xe605;</i>
+        <!-- <i class="iconfont">&#xe605;</i> -->
+         <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
         <span>商家店铺</span>
     </div>
 
@@ -98,7 +99,12 @@
 </template>
 <script>
 export default {
-    name:"merchant"
+    name:"merchant",
+    methods: {
+         back() {
+      this.$router.back();
+    },
+    },
 }
 </script>
 <style lang="scss">

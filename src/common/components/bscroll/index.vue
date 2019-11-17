@@ -14,29 +14,49 @@ export default {
   name: "qing-scroll",
   data(){
       return{
-          flag:false
+          flag:false,
       }
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper, {
       probeType: 1,
-      pullDownRefresh:true,//下拉刷新
-
+      pullDownRefresh:{
+        threshold:50
+      },//下拉刷新
+      pullUpLoad:true
     });
   },
   methods: {
     handleScroll() {
-      this.scroll.on("scroll", pro => {
-        if (pro.y > 30) {
+      this.scroll.on("scroll", pro => {//下拉
+        if (pro.y > 50) {
           this.flag=true;
         }
       });
     },
-    handlepullingDown(callback){
+    handlepullingDown(callback){//下拉刷新
         this.scroll.on("pullingDown",()=>{
-           callback() 
+           callback() ;
         })
+    },
+    handleRefreshDown(){
+      this.scroll.refresh();
+      this.scroll.finishPullDown();
+      setTimeout(()=>{
+        this.flag=false;
+      },1500)
+      
+    },
+    handlepullingUp(callback){
+      this.scroll.on("pullingup",()=>{
+        callback();
+      })
+    },
+    handlefinishPullUp(){
+      this.scroll.finishPullUp();
+      this.scroll.refresh();
     }
+
   }
 };
 </script>

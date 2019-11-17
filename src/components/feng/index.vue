@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="section">
+  <div class="group">
+   
       <ul>
         <li v-for="(item,index) in getList" :key="index">
           <div class="lazy">
@@ -33,7 +33,6 @@
           </div>
         </li>
       </ul>
-    </div>
   </div>
 </template>
 <script>
@@ -64,18 +63,17 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.section {
+<style lang="scss" scoped>
+.group {
   background: white;
 }
-.section ul {
+.group ul {
   width: 100%;
-  height: 1.5rem;
   margin-top: -0.1rem;
   background: white;
 }
 
-.section ul li {
+.group ul li {
   width: 100%;
   height: 1.5rem;
   padding: 0 0.1rem;
@@ -84,25 +82,25 @@ export default {
   border-top: 1px solid #eeeaea;
   padding: 0.15rem 0;
 }
-.section ul li .container {
+.group ul li .container {
   display: flex;
   flex-direction: column;
   width: 1.8rem;
 }
-.section ul li .lazy {
+.group ul li .lazy {
   width: 1.12rem;
   height: 1.12rem;
 }
-.section ul li .lazy img {
+.group ul li .lazy img {
   width: 1.12rem;
   height: 1.12rem;
 }
-.section ul li .content {
+.group ul li .content {
   width: 1.8rem;
   height: 1.15rem;
   margin-left: 0.16rem;
 }
-.section ul li .content .glc-title {
+.group ul li .content .glc-title {
   text-align: left;
   font-family: Arial, "Microsoft yahei";
   font-size: 0.13rem;
@@ -110,7 +108,7 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
-.section ul li .content .glc-des {
+.group ul li .content .glc-des {
   height: 0.32rem;
   margin: 0.01rem 0 0.15rem;
   line-height: 0.16rem;
@@ -118,11 +116,11 @@ export default {
   color: #ff3c32;
   overflow: hidden;
 }
-.section ul li .glc-zdt {
+.group ul li .glc-zdt {
   height: 0.2rem;
   margin-left: 0.16rem;
 }
-.section ul li .glc-zdt .goods_coupon {
+.group ul li .glc-zdt .goods_coupon {
   text-align: center;
   width: 0.6rem;
   height: 0.2rem;
@@ -136,13 +134,13 @@ export default {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.section ul li .glc-zdt .hasq {
+.group ul li .glc-zdt .hasq {
   float: right;
   color: #888888;
   font-size: 0.12rem;
   margin-top: 0.05rem;
 }
-.section ul li .cf .glc-price {
+.group ul li .cf .glc-price {
   font-size: 1em;
   color: #ff2b22;
   float: left;
@@ -151,10 +149,10 @@ export default {
   margin-left: 0.16rem;
   /* width: 100%; */
 }
-.section ul li .cf .glc-price .priceNum {
+.group ul li .cf .glc-price .priceNum {
   font-size: 0.16rem;
 }
-.section ul li .glc-btn {
+.group ul li .glc-btn {
   font-size: 0.12rem;
   color: white;
   float: right;

@@ -7,12 +7,15 @@
           alt
         />
       </div>
-      <div class="user_type">
+      <div class="user_type" v-show="showLogin">
         <span class="user_login" id="user_login">
-          <router-link to="/login">登录</router-link>
-          /
+          <router-link to="/login">登录</router-link>/
           <router-link to="/register">注册</router-link>
         </span>
+      </div>
+      <div v-show="showName" class="user_type">
+        <span>{{user}}</span>
+        <v-touch tag="span" @tap="handleExit()" class="exit">退出登录</v-touch>
       </div>
       <div class="else">
         <a href="#">
@@ -71,11 +74,38 @@
 export default {
   name: "mine",
   data() {
-    return {};
-  }
+    return {
+      showLogin: true,
+      showName: false,
+      user: ""
+    };
+  },
+ created() {
+    this.handleSend();
+  },
+  methods: {//显示用户名
+    handleSend(){
+       if(localStorage.getItem("name")) {
+         this.showLogin=false;
+          this.showName = true;
+          this.user = JSON.parse(localStorage.getItem("name")).username;
+      }
+      // console.log(JSON.parse(localStorage.getItem("name")).username);
+    },
+    handleExit(){//退出登录
+        Cookies.remove('token');
+        this.$router.push("login");
+    }
+  },
+
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.exit{
+  position: relative;
+  left: .9rem;
+  font-size: .12rem
+}
 .user_center_info {
   height: 3.66rem;
   background: url("https://cmsstatic.ffquan.cn//wap_new/user/images/user_bg.png?v=2019-11-10")
