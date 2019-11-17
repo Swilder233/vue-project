@@ -1,6 +1,6 @@
 <template>
   <div class="hgroup">
-    <div class="header">
+    <div class="hds">
       <v-touch tag="i" @tap="back()" class="iconfont">&#xe605;</v-touch>
       <span>注册</span>
     </div>
@@ -11,9 +11,9 @@
         </i>
         <div class="inputtext">
           <input type="text" placeholder="用户名" v-model="username" />
-          <i class="icon_font">
+          <v-touch tag="i" class="icon_font" @tap="handleDel()" >
             <img src="@assets/img/chahao.png" alt />
-          </i>
+          </v-touch>
         </div>
         <p class="input_msg">请输入正确11位的手机号码！</p>
       </div>
@@ -22,10 +22,10 @@
           <img class="icon-phone" src="@assets/img/lock.png" alt />
         </i>
         <div class="inputtext">
-          <input type="password" placeholder="密码" v-model="password" />
-          <i class="icon_font">
+          <input :type="showPass==false?'password':'text' " placeholder="密码" v-model="password" />
+          <v-touch tag="i" class="icon_font" @tap="handleLook()">
             <img class="eye" src="@assets/img/eye.png" alt />
-          </i>
+          </v-touch>
         </div>
         <p class="input_msg">密码格式</p>
       </div>
@@ -52,12 +52,19 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      showPass:false,
     };
   },
   methods: {
     back() {
       this.$router.back();
+    },
+    handleDel(){
+          this.username = "";
+    },
+    handleLook(){
+      this.showPass=!this.showPass;
     },
     async register(username, password) {
       //在这里要获取数据
@@ -116,20 +123,6 @@ export default {
   //注册
 };
 
-//   //  ...mapMutations({
-//   //    handleName:"register/handleName"
-//   //  })
-// };
-//  computed:{
-//    ...mapState({
-//      username:state=>state.register.username,
-//      password:state=>state.register.password
-//    })
-//  },
-
-//  created(){
-//    this.$store.register.dispatch("registerUser")
-//  }
 </script>
 <style lang="scss">
 .btn {
@@ -140,7 +133,7 @@ export default {
   height: 100%;
   background: white;
 }
-.header {
+.hds {
   height: 0.45rem;
   background: white;
   text-align: center;
@@ -148,7 +141,7 @@ export default {
   position: relative;
   height: 1rem;
 }
-.header i {
+.hds i {
   position: absolute;
   left: 0.2rem;
   top: 0.02rem;

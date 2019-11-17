@@ -1,35 +1,34 @@
 <template>
-<qing-scroll ref="scroll">
-<!-- <div class="content" ref="goodsbody"> -->
-   <ul class="goods-new row-s">
-    <li class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
-      <img :src="item.pic" alt />
-      <h2 class="product_title">
-        <i class="labelTop tm"></i>
-        <span class="title_text">{{item.d_title}}</span>
-      </h2>
-      <h3 class="price">
-        <span>券后&nbsp;</span>
-        <span class="RMB">￥</span>
-        <span class="price_num">{{item.jiage}}</span>
-      </h3>
-      <p class="label_box">
-        <!-- <span class="label label2">{{item.p_labels[0].title}}</span> -->
-        <span class="label label2">爆款</span>
-        <span class="juan">
-          <span>券</span>
-          {{item.quan_jine}}元
-        </span>
-      </p>
-      <div class="salse">
-        <span>已售{{(Number(item.xiaoliang)/10000).toFixed(1)}}万</span>&nbsp;
-        <span>评论{{(Number(item.comment)/10000).toFixed(1)}}万</span>
-      </div>
-    </li>
-  </ul>
+  <qing-scroll ref="scroll">
+    <!-- <div class="content" ref="goodsbody"> -->
+    <ul class="goods-new row-s">
+      <li class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
+        <img :src="item.pic" alt />
+        <h2 class="product_title">
+          <i class="labelTop tm"></i>
+          <span class="title_text">{{item.d_title}}</span>
+        </h2>
+        <h3 class="price">
+          <span>券后&nbsp;</span>
+          <span class="RMB">￥</span>
+          <span class="price_num">{{item.jiage}}</span>
+        </h3>
+        <p class="label_box">
+          <!-- <span class="label label2">{{item.p_labels[0].title}}</span> -->
+          <span class="label label2">爆款</span>
+          <span class="juan">
+            <span>券</span>
+            {{item.quan_jine}}元
+          </span>
+        </p>
+        <div class="salse">
+          <span>已售{{(Number(item.xiaoliang)/10000).toFixed(1)}}万</span>&nbsp;
+          <span>评论{{(Number(item.comment)/10000).toFixed(1)}}万</span>
+        </div>
+      </li>
+    </ul>
   </qing-scroll>
-<!-- </div> -->
- 
+  <!-- </div> -->
 </template>
 <script>
 import { freeInfoList } from "@api/freeShipping";
@@ -38,16 +37,16 @@ export default {
   name: "jx1",
   data() {
     return {
-      recommend: [],
+      recommend: []
     };
   },
   created() {
-      this.handleGetGoodsList();
+    this.handleGetGoodsList();
   },
   methods: {
     async handleGetGoodsList(r, n_id, page, cac_id) {
       //在这里要获取数据
-      n_id=n_id?n_id:58;
+      n_id = n_id ? n_id : 58;
       let data1 = await freeInfoList(r, n_id, page, cac_id);
       this.recommend = data1.data.data;
     }
@@ -57,34 +56,35 @@ export default {
     this.n_id = n_id;
     this.handleGetGoodsList("nine/listajax", n_id, 1, "");
   },
-  mounted(){
-        //  console.log(this.$refs.scroll);
-        this.$refs.scroll.handleScroll();
-        this.$refs.scroll.handlepullingDown(()=>{
-          console.log(12);
-              this.handleGetGoodsList("nine/listajax", 296, 1, "");
-        });
-      
+  watch: {
+    recommend() {
+      this.$refs.scroll.handleRefreshDown()
     }
-   
+  },
+  mounted() {
+    //  console.log(this.$refs.scroll);
+    this.$refs.scroll.handleScroll();
+    this.$refs.scroll.handlepullingDown(() => {
+      this.handleGetGoodsList("nine/listajax", 296, 1, "");
+    });
+    this.$refs.scroll.handlepullingUp(()=>{
+        // this.handleGetGoodsList("nine/listajax",58, 2, "");
+        console.log(123);
+    })
+  }
 };
 </script>
-<style>
-/* li:hover{
-  color: #fe0036;
-  font-weight: bolder;
-  border-bottom: 2px #fe0036 solid;
-} */
-.content{
+<style scoped>
+.content {
   height: 100%;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 .goods-new {
   /* position: absolute; */
   display: flex;
   flex-wrap: wrap;
   background: #f0f0f0;
-  padding-bottom: .5rem; 
+  padding-bottom: 0.5rem;
 }
 .goods-new .goods-new_items {
   width: 1.53rem;

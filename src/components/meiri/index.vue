@@ -1,26 +1,30 @@
 <template>
-    <div class="sec">
-      <qing-scroll>
-         <ul>
+  <div class="sec">
+   
+      <ul>
+        <div class="ranking_banner">
+          <img
+            src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01bxRFEY2JJhz5KNm0P_!!2053469401.png?v=752320"
+            alt
+          />
+        </div>
         <li v-for="(item,index) in getList" :key="index">
           <div class="lazy">
-            <img
-              :src="item.picUrl"
-              alt
-            />
+            <img :src="item.picUrl" alt />
           </div>
           <div class="container">
-            <div class="content">
+            <div class="con">
               <p class="glc-title">{{item.name}}</p>
               <p class="glc-des">{{item.fashionTag}}</p>
+              <span class="minge">{{item.yijuhua}}</span>
             </div>
             <div class="glc-zdt">
               <div class="goods_coupon">
-                <span class="quanjine">{{item.couponAmount}}</span>元券
+                <span class="quanjine">{{item.preferential}}</span>
               </div>
               <p class="hasq">
-                剩余
-                <span>{{item.restCount}}</span>件
+                已抢
+                <span>{{item.itemSoldNum}}</span>件
               </p>
             </div>
             <div class="cf gl-bot">
@@ -28,56 +32,90 @@
                 <span class="qh">到手价 ￥</span>
                 <span class="priceNum">{{item.price}}</span>
               </p>
-              <div class="glc-link glc-btn msq">马上抢</div>
+              <van-tag type="danger" class="glc-link glc-btn msq" v-show="flagGo">GO></van-tag>
+              <van-tag type="danger" class="glc-link glc-btn msq" v-show="flagSoon">即将开始</van-tag>
             </div>
           </div>
         </li>
       </ul>
-      </qing-scroll>
-     
-    </div>
-
+   
+  </div>
 </template>
 <script>
-import {halfInfoList} from "@api/half";
+import { halfInfoList } from "@api/half";
+// import {dailyInfoList} from "@api/half"
 export default {
   name: "meiri",
-  data(){
-    return{
-    getList: []
-    }
+  data() {
+    return {
+      getList: [],
+      flagGo:false,
+      flagSoon:false,
+    };
   },
   created() {
     this.handleList("15");
+    // this.handleTime();
   },
+
   methods: {
     async handleList(id) {
-      let data = await halfInfoList(id)
-         console.log(data.data.list);
-      this.getList=data.data.list;
-    }
+      let data = await halfInfoList(id);
+      // let data1 = await dailyInfoList()
+      // console.log(data1);
+      this.getList = data.data.list;
+    },
+    //  async handleTime() {
+    //   let data1 = await dailyInfoList()
+    //      console.log(data1.data);
+    //   for(var i=0;i<data1.data.length;i++){
+    //     if(data1.data[i].status=="after"){
+    //         this.flagSoon=false;
+    //          this.flagGo=true;
+    //     }else{
+    //          this.flagGo=false;
+    //          this.flagSoon=true;
+    //     }
+    //   } 
+    // }
   },
   beforeRouteUpdate(to, from, next) {
     let { id } = to.query;
     console.log(id);
     this.handleList(id);
-  }
+  },
+  
 };
 </script>
 <style lang="scss">
+.van-tabs{
+  background: linear-gradient(to left, #FA4DBE 0, #FBAA58 100%);
+}
+.ranking_banner img{
+  width:100%
+}
 .sec {
   background: white;
-  // margin-top: 0.85rem;
   overflow: scroll;
   height: 100%;
-  // padding-bottom: .5rem;
+  
+}
+.minge{
+      color: #FF2B22;
+      font-size: .13rem;
+      position: absolute;
+      top: .3rem;
+      margin-left: .05rem;
+          background: #FFECEB;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid #ffa5a1;
+    color: #FF2B22;
 }
 .sec ul {
   width: 100%;
-  // height: 1.5rem;
   margin-top: -0.1rem;
   background: white;
-  // padding-bottom:0.5rem;
 }
 
 .sec ul li {
@@ -102,12 +140,13 @@ export default {
   width: 1.12rem;
   height: 1.12rem;
 }
-.sec ul li .content {
+.sec ul li .con {
   width: 1.8rem;
   height: 1.15rem;
   margin-left: 0.16rem;
+  position:relative;
 }
-.sec ul li .content .glc-title {
+.sec ul li .con .glc-title {
   text-align: left;
   font-family: Arial, "Microsoft yahei";
   font-size: 0.13rem;
@@ -115,7 +154,7 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
-.sec ul li .content .glc-des {
+.sec ul li .con .glc-des {
   height: 0.32rem;
   margin: 0.01rem 0 0.15rem;
   line-height: 0.16rem;
@@ -136,8 +175,8 @@ export default {
   float: left;
   line-height: 20px;
   font-size: 0.8em;
-  color: #ff7800;
-  background-image: url("https://cmsstatic.ffquan.cn//web/images/ddq/quanbg.png?v=201910105824523");
+  border-radius: 2px;
+   color: #FF2B22;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -161,11 +200,9 @@ export default {
 }
 .sec ul li .glc-btn {
   font-size: 0.12rem;
+  // background: black;
   color: white;
   float: right;
-  background-image: url("https://cmsstatic.ffquan.cn//web/images/ddq/dqbtn.png?v=201910105824523");
-  background-size: 100% 100%;
-  padding: 0 10px 0 0;
   margin-top: 0.05rem;
 }
 </style>
