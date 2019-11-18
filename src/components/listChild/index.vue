@@ -49,7 +49,7 @@ export default {
     },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     /* body */
 .lei_body{
     margin-top: .9rem;

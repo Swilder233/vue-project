@@ -19,11 +19,11 @@
         <div class="goods_info">
             <h1><span>天猫</span>{{title}}</h1>
             <div class="goods_price">
-                <li>到手￥<span>{{price}}</span></li>
+                <li>券后￥<span>{{price}}</span></li>
                 <p>已定<span>{{xiaoliang | guolv("万")}}</span>件</p>
             </div>
             <div class="old_price">
-                <i>到手价<span>￥{{price}}</span></i>
+                <i>天猫价<span>￥{{yuanjia}}</span></i>
                 <i>包邮</i>
             </div>
             <div class="goods_quan">
@@ -39,7 +39,8 @@
             </div>
         </div>
         <div class="hr"></div>
-        <div class="store">
+        <router-link class="store" tag="div" 
+                :to="{name:'merchant',query:{goodsid:goodsid}}">
             <div class="store_info">
                 <img src="https://img.alicdn.com/imgextra//i4/379424083/O1CN01Vd5era1g23dFFzU3v_!!379424083.png_310x310.jpg"
                     alt="">
@@ -54,7 +55,7 @@
                 <li>卖家服务：{{infoList.serviceScore}}<span>高</span></li>
                 <li>物流服务：{{infoList.shipScores}}<span>平</span></li>
             </ul>
-        </div>
+        </router-link>
         <div class="hr"></div>
         <!-- 相似推荐 -->
         <div class="similar">
@@ -164,15 +165,16 @@ export default {
         }
     },
     async created() {
-        let {id,goodsid,title,price,quan,xiaoliang,img}=this.$route.query;
+        let {id,goodsid,title,price,quan,xiaoliang,img,yuanjia}=this.$route.query;
         this.id=id;
         this.goodsid=goodsid;
         this.title=title;
         this.price=price;
         this.quan=quan;
+        this.yuanjia = yuanjia;
         this.xiaoliang=xiaoliang;
         this.img=img;
-        console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
+        // console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
         //商品图片
         let imgData = await detailImgApi(goodsid);  
         this.imgList=imgData.data;
@@ -194,6 +196,7 @@ export default {
     methods: {
         handleDetailBack(){
             this.$router.back();
+            this.$destroy();
         },
         handleBuy(){
             this.op=true;
@@ -246,7 +249,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 /* 加入购物车 */
 .cart{
     width: 100%;

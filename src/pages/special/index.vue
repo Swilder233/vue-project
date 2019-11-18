@@ -14,7 +14,7 @@
     </h3>
     <div class="dianji">
       <div class="swiper-slide active swiper-slide-active">
-        <div class="swiper-cent" v-for="(item) in hot " :key="item.goodsid">
+        <router-link class="swiper-cent" tag="li" :to="{name:'detail',query:{id:item.id,goodsid:item.goodsid,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic,yuanjia:item.yuanjia}}" v-for="(item) in hot " :key="item.goodsid">
           <a>
             <img :src="item.pic" alt />
           </a>
@@ -27,7 +27,7 @@
             ¥{{item.jiage}}
             <span>券后</span>
           </p>
-        </div>
+        </router-link>
       </div>
     </div>
 
