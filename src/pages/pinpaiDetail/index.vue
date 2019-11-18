@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div class="pinpai">
         <!-- 滑上去之后的header ，滑上之后会显示-->
         <div class="header_pre" style="display: none;">
             <header class="header_none">
-                <a href="" class="iconfont" v-html="icon[0]"></a>
+                <v-touch tag="a" @tap="pinpaiBack()" href="" class="iconfont" v-html="icon[0]"></v-touch>
                 <div class="title">品牌详情</div>
             </header>
         </div>
         <div class="header_show">
             <div class="header_show_title">
-                <a href="#" class="iconfont" v-html="icon[0]"></a>
+                <v-touch tag="a" @tap="pinpaiBack()" href="#" class="iconfont" v-html="icon[0]"></v-touch>
                 品牌详情
             </div>
         </div>
@@ -23,8 +23,8 @@
                 <div class="name">{{pinpaiList.brandName}}</div>
                 <h3><span>{{pinpaiList.brandWenan}}</span></h3>
                 <h4>
-                    <span>粉丝：{{pinpaiList.fansNum}}</span>|
-                    <span>近期销量：{{pinpaiList.recentSale}}</span>
+                    <span>粉丝：{{pinpaiList.fansNum | guolv("万")}}</span>|
+                    <span>近期销量：{{pinpaiList.recentSale | guolv("万")}}</span>
                 </h4>
                 <h5>「{{label}}」</h5>
                 <p :class="isShow==1?'over':'detail'">{{pinpaiList.brandDes}}</p>
@@ -52,7 +52,20 @@
             </div>
 
             <!-- 列表详情 -->
-            <Pinpai/>
+            <!-- 列表 -->
+            <div class="list">
+                <ul>
+                    <router-link tag="li" 
+                    :to="{name:'detail',query:{id:item.id,goodsid:item.goodsId,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic}}" 
+                    v-for="(item,index) in pinList" :key="index">
+                        <img :src="item.pic" alt="">
+                        <div class="goods_title"><span>天猫</span>{{item.d_title}}</div>
+                        <div class="goods_price">卷后<span>￥{{item.jiage}}</span></div>
+                        <div class="juan"><i>旗舰店</i><strong>卷{{item.quan_jine}}元</strong></div>
+                        <div class="sale">已售{{item.xiaoliang | guolv("万")}} | 评论{{item.comment | guolv("万")}}</div>
+                    </router-link>
+                </ul>
+            </div>
         </div>
 
 
@@ -62,36 +75,50 @@
     </div>
 </template>
 <script>
-import {pinpaiApi} from "@api/pinpai";
-import Pinpai from "@components/pinpai";
+import {pinpaiApi,pinpaiListApi} from "@api/pinpai";
 export default {
     name:"PinpaiDetail",
-    components:{
-        Pinpai,
-    },
     data(){
         return {
             icon:["&#xe605;"],
             pinpaiList:"",
             label:"",
+            pinList:[],
             isShow:0,
-            more:["查看更多","收起"]
+            more:["查看更多","收起"],
+            brandId:""
         }
+    },
+    created() {
+        // 首页传递
+        let {brandId}=this.$route.params;
+        console.log(brandId)
+        this.handleDe(brandId);
+        this.handleDeList(brandId);     
     },
     methods: {
         handleMore(){
             this.isShow=!this.isShow;
+        },
+        async handleDe(brandId){
+            let data= await pinpaiApi(brandId);
+            this.pinpaiList=data.data;
+            this.label=data.data.label[1];
+            // console.log(this.pinpaiList);
+        
+        },
+        async handleDeList(brandId){
+            let dataList = await pinpaiListApi(brandId);
+            this.pinList=dataList.data.lists;
+            // console.log(dataList);
+            console.log(this.pinList);
+        },
+        pinpaiBack(){
+            this.$router.push("/home");
+            window.location.reload();
         }
     },
-    async created() {
-        // 首页传递
-        // let {brandId}=this.$route.query;
-
-        let data= await pinpaiApi();
-        this.pinpaiList=data.data;
-        this.label=data.data.label[1];
-        // console.log(this.pinpaiList);
-    },
+    
 }
 </script>
 <style>
@@ -186,11 +213,16 @@ export default {
     /* zoom: 1;
     z-index: 99;
     position: relative; */
-    margin: auto;
     width: 100%;
     max-width: 7.5rem;
     box-sizing: border-box;
     padding-top: .8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    
 }
 /* 详情介绍 */
 .main .info{
@@ -402,5 +434,77 @@ export default {
 }
 .hot ol li span:nth-of-type(2){
     text-decoration: line-through;
+}
+/* 列表 */
+.list ul{
+    margin-left:.1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.list ul li{
+    width:145px;
+    height: 2.68rem;
+    border-radius: .05rem;
+    margin-right: .1rem;
+    background: #fff;
+    margin-top: .1rem;
+    box-sizing: border-box;
+    padding-left: .08rem;
+}
+.list ul li img{
+    width: 100%;
+    border-radius: .05rem;
+}
+.list ul li .goods_title{
+    width: 96%;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1;
+    padding-top: .2rem;
+}
+.list ul li .goods_price{
+    font-size: 10px;
+    font-weight: 400;
+    color: #666;
+    margin: .04rem 0;
+}
+
+.list ul li .goods_price span{
+    font-size: 19px;
+    font-weight: 500;
+    color: #FF2B22;
+}
+.list ul li .juan i{
+    height: 8px;
+    font-style: normal;
+    border-radius: 2px;
+    border: 1px solid;
+    font-size: 8px;
+    font-weight: 400;
+    color: #ff0137;
+    line-height: 1;
+    padding: 0 3px;
+    margin-right: 5px;
+}
+.list ul li .juan strong{
+    font-weight: normal;
+    background: linear-gradient(90deg,#ff8873 0,#ff4f4f 100%);
+    border-radius: 2px;
+    padding: 0 5px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 16px;
+}
+.list ul li .sale{
+    padding-top: .08rem;
+    font-size: 9px;
+    font-weight: 400;
+    color: #888;
 }
 </style>

@@ -9,17 +9,18 @@
                         {{childOne.name}}
                     </a>
                 </router-link>
-               
+                
             </ul>
            
     </div>
 </template>
 <script>
+import {kindApi} from "@api/kind"
 export default {
     name:"KindRight",
     data(){
         return {
-            kindInfo:JSON.parse(sessionStorage.getItem("kind"))||{},
+            kindInfo:JSON.parse(localStorage.getItem("kind"))||{},
             index:0,
             // px:["t","latest","sell","price_h"]
         }
@@ -30,6 +31,12 @@ export default {
             console.log(this.kindInfo);
         })
     },
+    // methods: {
+    //     async handleGetData(){
+    //         let data=await kindApi();
+    //         console.log(data)
+    //     }
+    // },
 }
 </script>
 <style>
@@ -42,8 +49,10 @@ export default {
     margin-top: 0.44rem;
     overflow: hidden;
     overflow-y: auto;
-    position: relative;
+    position: absolute;
     z-index: 0;
+    /* padding-bottom: .5rem; */
+    /* overflow: scroll; */
 }
 .content .img{
     margin: 0 10px;

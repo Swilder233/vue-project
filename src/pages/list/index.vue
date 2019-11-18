@@ -12,9 +12,11 @@
                 <ul>
                     <!-- :class="toIndex==index?'toActive':''" -->
                     <router-link tag="li" :to="'/list/child?px='+item.px+'&cid='+cid"
-                     v-for="(item,index) in toArr"
+                    v-for="(item,index) in toArr"
                     :key="index"
                     >{{item.content}}</router-link>
+
+
 
                 </ul>
             </div>
@@ -34,7 +36,7 @@ export default {
             icon:["&#xe605;","&#xe606;"],
             cid:"",
             title:"",
-            toIndex:0,
+            // toIndex:0,
             // ["人气","最新","销量","价格"]
             toArr:[
                 {
@@ -59,7 +61,7 @@ export default {
     methods: {
         listBack(){
             this.$router.back("/kind");
-        }
+        },
     },
     created() {
         let {cid,name} = this.$route.query;
@@ -82,6 +84,7 @@ export default {
         left: 0;
         right: 0;
         width: 100%;
+        height: .94rem;
     }
 
     /* 头部 */
@@ -102,6 +105,7 @@ export default {
         height: .5rem;
         box-sizing: border-box;
         background: #ffffff;
+        padding: 0;
     }
     .nav ul{
         width: 100%;

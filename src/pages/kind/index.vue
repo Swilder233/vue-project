@@ -25,6 +25,7 @@ import kindLeft from "@components/kindLeft"
 import kindRight from "@components/kindRight"
 
 import {kindApi} from "@api/kind";
+
 export default {
     name:"Kind",
     components:{
@@ -49,9 +50,9 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 120;
+    z-index: 12;
     display: block;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 .top a{
     position: absolute;

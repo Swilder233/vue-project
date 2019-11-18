@@ -16,7 +16,7 @@ let mutations={
     handlekind(state,list){
         state.kindList=list;
         // console.log(state.kindList)
-        console.log(state.kindList[0])
+        // console.log(state.kindList[0])
     }
 }
 

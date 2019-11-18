@@ -25,4 +25,8 @@ export const detailSimilarApi=(id)=>http({
 })
 
 
-
+// 购物车接口
+export const mycartApi=()=>http({
+    method:"get",
+    url:"/api/goods/get-recommend-goods?id=23317829"
+})

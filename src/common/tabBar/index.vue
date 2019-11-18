@@ -30,7 +30,7 @@ export default {
                 {
                     text:"分类",
                     icon:"&#xe61d;",
-					path:"fenlei"
+					path:"kind"
                 },
                 {
                     text:"收藏",
@@ -60,6 +60,7 @@ export default {
 	justify-content: space-around;
 	align-items: center;
 	background:#fff;
+	z-index: 20;
 }
 .bottom a{
 	width: 100%;

@@ -7,6 +7,10 @@ module.exports = {
           target: 'http://cmsjapi.ffquan.cn',
           changeOrigin: true
         },
+        '/index.php':{
+          target:'http://www.mangguozhe.com',
+          changeOrigin:true
+        },
         '/ajax':{
           target:'https://m.lrts.me',
           changeOrigin:true
@@ -26,6 +30,7 @@ module.exports = {
                 "@utils":path.join(__dirname,"./src/utils"),
                 "@assets":path.join(__dirname,"./src/assets"),
                 "@common":path.join(__dirname,"./src/common"),
+                "@lib":path.join(__dirname,"./src/lib")
             }
         }
     }
