@@ -12,7 +12,7 @@
                         <h2><span>天猫</span>{{item.d_title}}</h2>
                         <h4><span>聚</span>卷后<strong>￥{{item.jiage}}</strong></h4>
                         <h5><span>旗舰店</span><i>卷{{item.quan_jine}}元</i></h5>
-                        <h6>已售{{item.xiaoliang}}万 | 评论{{item.comment}}</h6>
+                        <h6>已售{{item.xiaoliang | guolv("万")}} | 评论{{item.comment | guolv("万")}}</h6>
                     </div>
                 </router-link>
             </ul>
@@ -61,6 +61,8 @@ export default {
     -webkit-box-flex: 1;
     background-color: #fff;
     height: 100%;
+    position: absolute;
+    top:0;
 }
 .lei_body ul li{
     padding: .1rem 0 0 .1rem;
@@ -69,14 +71,14 @@ export default {
     padding-bottom: .1rem;
 }
 .lei_body .left_img{
-    width: 1.46rem;
+    width: 1.26rem;
     height: 1.12rem;
     margin-right: .14rem;
 
 }
 .lei_body .left_img img{
-    width: 100%;
-    height: 100%;
+    width: 1.26rem;
+    height: 1.12rem;
 }
 .right h2{
     font-size: 14px;

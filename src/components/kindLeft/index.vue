@@ -27,7 +27,7 @@ export default {
         let data=await kindApi();
         // console.log(data)
         this.kindList=data.data.data;
-        sessionStorage.setItem("kind",JSON.stringify(data.data.data[0]))  
+        localStorage.setItem("kind",JSON.stringify(data.data.data[0]))  
     },
 }
 </script>

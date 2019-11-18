@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 // import VueTouch from "vue-touch";
 import home from "./home";
 import mine from "./mine";
+import kind from "./kind"
 import fengqiang from "./fengqiang";
 import xiangqing from "./xiangqing";
 import shezhi from "./shezhi";
@@ -11,7 +12,6 @@ import shezhi from "./shezhi";
 // import { Swipe, SwipeItem } from 'vant';
 // Vue.use(Swipe).use(SwipeItem);
 import freeshipping from './freeshipping';
-import kind from "./kind";
 
 Vue.use(VueRouter);
 // Vue.use(VueTouch,{name:"v-touch"});
@@ -133,15 +133,6 @@ const router = new VueRouter({
             },
         
         // 分类下的列表
-        // {
-        //     path:"/",
-        //     redirect:"/home"
-        // },
-        // {
-        //     path:"/home",
-        //     name:"home",
-        //     component:_=>import("@pages/home")
-        // },
         {
             path:"/list",
             component:_=>import("@pages/list"),
@@ -169,18 +160,24 @@ const router = new VueRouter({
         },
         // 品牌详情
         {
-            path:"/pinpai",
+            path:"/pinpai/:brandId",
             component:_=>import("@pages/pinpaiDetail"),
             name:"pinpai",
         },
         {
             path:"/fengqiang",
             redirect:"/fengqiang/goods/4"
-        },       
-        // {
-        //     path:"/xiangqing",
-        //     redirect:"/xiangqing/xqc"
-        // },       
+        }, 
+        //  
+        {
+            path:"/mycart",
+            component:_=>import("@pages/mycart"),
+            name:"mycart",
+            // meta:{
+            //     tabbarFlag:true,
+            // }  
+        },    
+         
         home,
         mine,
         fengqiang,

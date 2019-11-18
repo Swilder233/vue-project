@@ -122,9 +122,10 @@
 					<a href="#" class="iconfont">更多品牌&#xe715;</a>
 				</div>
 				<ul class="temai_content">
-					<li v-for="(item,index) in pinpaiList" :key="index">
+					<router-link tag="li" :to="{name:'pinpai',params:{brandId:item.choose.choose_2}}" 
+					v-for="(item,index) in pinpaiList" :key="index">
 						<img :src="item.address" alt="">
-					</li>
+					</router-link>
 				</ul>
 			</div>
 		</div>
@@ -208,7 +209,7 @@ export default {
         }
     },
    async created() {
-    //    获取到菜单键
+	//    获取到菜单键
        let data = await homeCaidan();
         this.navList = data.data;
         // 获取到商品信息

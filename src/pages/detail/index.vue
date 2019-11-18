@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="body" :class="op==true?'opacity':''">
         <!-- 头部 -->
         <div class="header">
             <v-touch tag="div" @tap="handleDetailBack()"
@@ -13,14 +13,14 @@
         </div>
         <!-- body -->
         <div class="detail">
-        <div class="img">
+        <v-touch tag="div" class="img" @tap="handleNone()">
             <img :src="img" alt="">
-        </div>
+        </v-touch>
         <div class="goods_info">
             <h1><span>天猫</span>{{title}}</h1>
             <div class="goods_price">
                 <li>到手￥<span>{{price}}</span></li>
-                <p>已定<span>{{xiaoliang}}</span>件</p>
+                <p>已定<span>{{xiaoliang | guolv("万")}}</span>件</p>
             </div>
             <div class="old_price">
                 <i>到手价<span>￥{{price}}</span></i>
@@ -102,7 +102,7 @@
                         <div class="goods_title"><span>天猫</span>item.dtitle</div>
                         <div class="go_price">卷后<span>￥{{item.jiage}}</span></div>
                         <div class="juan"><i>旗舰店</i><strong>卷{{item.quanJine}}元</strong></div>
-                        <div class="sale">已售{{item.xiaoliang}} | 评论0</div>
+                        <div class="sale">已售{{item.xiaoliang | guolv("万")}} | 评论0</div>
                     </li>
                 </ul>
             </div>
@@ -111,25 +111,41 @@
     <!-- footer -->
     <div class="footer">
         <div class="share">
-            <p class="iconfont">&#xe684;</p>分享
+            <p class="iconfont" v-html="icon[2]"></p>分享
         </div>
         <div class="cang">
-            <p class="iconfont">&#xe613;</p>收藏
+            <p class="iconfont" v-html="icon[3]"></p>收藏
         </div>
         <div class="buy">
-            <span>口令购买</span>
-            <span>领劵预定</span>
+            <v-touch tag="span" @tap="handleBuy()">口令购买</v-touch>
+            <!-- @tap="handleCart()" -->
+            <v-touch tag="span" @tap="handleCart()">领劵预定</v-touch>
         </div>
     </div>
+    <!-- 加入cart -->
+    <transition name="bottom">
+        <div class="cart" v-if="cartFlag">
+            <h3>种类</h3>
+            <h3>大小</h3>
+            <!-- <router-link tag="div" :to="{name:'mycart',params:{dianpu:this.infoList.shopName,biaoti:title,jiage:price,pic:img}}">确定</router-link> -->
+            <v-touch tag="div" @tap="handleSure()">确定</v-touch>
+        </div>
+    </transition>
+    
     </div>
 </template>
 <script>
 import {detailImgApi,detailInfoApi,detailRecommendApi,detailSimilarApi} from "@api/detail";
+import MessageBox from "@lib/messageBoxBuy/index.js";
+import { Toast } from 'mint-ui';
 export default {
     name:"detail",
+    // components:{
+    //     MessageBox
+    // },
     data(){
         return {
-            icon:["&#xe605;","&#xe606;"],
+            icon:["&#xe605;","&#xe606;","&#xe610;","&#xe609;"],
             id:"",
             goodsid:"",
             title:"",
@@ -140,7 +156,11 @@ export default {
             infoList:"",
             img:"",
             recommendList:[],
-            similarList:[]
+            similarList:[],
+            op:false,
+            // 加入购物车
+            cartFlag:false,
+            store:JSON.parse(localStorage.getItem("cart"))||[]
         }
     },
     async created() {
@@ -168,17 +188,91 @@ export default {
         this.similarList=similarData.data;
         // console.log(this.recommendList);
 
-        
+
     },
+    
     methods: {
         handleDetailBack(){
             this.$router.back();
+        },
+        handleBuy(){
+            this.op=true;
+            // 弹出框
+            MessageBox({
+                title:"复制淘口令购买",
+                content:"复制框内整段文字，打开【手-机-淘-宝】即可领券购买。$OTGVYvNTuRX$",
+                ok:()=>{
+                    // alert("复制成功")
+                    this.op=false;
+                }
+            })
+        },
+   
+        handleCart(){
+            this.cartFlag=!this.cartFlag;
+
+        },
+        handleSure(){
+            this.cartFlag=false;
+            // 点击弹出加入成功提示框
+            Toast({
+                message: '加入购物车成功',
+                position: 'center',
+                duration: 5000
+            });
+            let obj={};
+            obj.dianpu=this.infoList.shopName;
+            obj.title=this.title;
+            obj.jiage=this.price;
+            obj.pic=this.img;
+            console.log(obj);
+
+            this.store.push(obj);
+            localStorage.setItem("cart",JSON.stringify(this.store));  
+            // obj={}
+            // if(!localStorage.getItem("cart")){
+            //     localStorage.setItem("cart",JSON.stringify(this.store));                
+            //     // this.store.push(obj);
+            //     JSON.parse(localStorage.getItem("cart")).push(obj);
+            // }else{
+            //     // console.log(JSON.parse(localStorage.getItem("cart")));
+            //     JSON.parse(localStorage.getItem("cart")).push(obj);
+            // }
+        },
+        handleNone(){
+            this.cartFlag=false;
         }
     },
     
 }
 </script>
 <style>
+/* 加入购物车 */
+.cart{
+    width: 100%;
+    height: 3rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: red;
+    z-index: 30
+}
+.bottom-enter,.bottom-leave-to{
+    bottom:-2.44rem;
+}
+.bottom-enter-active,.bottom-leave-active{
+    transition: .2s;
+}
+
+
+
+.body{
+    height: 100%;
+}
+.opacity{
+    background: #666;
+    opacity: 0.5;
+}
     /* 头部 */
     .header{
         height: .45rem;
@@ -218,6 +312,19 @@ export default {
 /* main */
 .detail{
     padding: 0 0 .56rem;
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    -webkit-box-flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
 
 }
 .detail .img{
@@ -300,6 +407,8 @@ export default {
     padding: .12rem 0;
     padding-left: .08rem;
     border-left: .01rem dashed #ffffff;
+    font-size: .14rem;
+    font-weight: normal;
 }
 .content{
     font-size: .15rem;
@@ -508,7 +617,7 @@ export default {
     position: fixed;
     zoom: 1;
     bottom: 0;
-    z-index: 500;
+    z-index: 10;
     background: #ffffff;
     left: 0;
     width: 100%;
@@ -517,15 +626,21 @@ export default {
     padding: 0 0 0 .14rem;
 }
 .footer .share{
-    padding-right: .24rem;
+    width:.4rem;
+    text-align: center;
+    font-size: .14rem;
 }
 .footer .cang{
-    padding-right: .46rem;
+    width:.5rem;
+    text-align: center;
+    font-size: .14rem;
 }
 .footer .buy{
     display: flex;
     justify-content: center;
+    margin-left: .15rem;
 }
+
 .footer .buy span:nth-of-type(1){
     color: #FE9F69;
     width: .8rem;

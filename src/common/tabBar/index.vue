@@ -30,7 +30,7 @@ export default {
                 {
                     text:"分类",
                     icon:"&#xe61d;",
-					path:"fenlei"
+					path:"kind"
                 },
                 {
                     text:"收藏",
