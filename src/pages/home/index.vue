@@ -1,7 +1,7 @@
 <template>
     <div class="top">
 		<div class="header">
-			<input type="text" placeholder="输入商品名或粘贴宝贝标题搜索"/>
+			<input type="text" placeholder="输入商品名或粘贴宝贝标题搜索" @focus="handleTiaozhuan()"/>
 			<span  class="iconfont sousuo">&#xe613;</span>
 			<p><span class="iconfont">&#xe600;</span>
 				<span>消息</span>
@@ -44,7 +44,7 @@
 					<img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="">
 					<span>疯抢排行</span>
 				</router-link>
-				<router-link to="/" tag="li">
+				<router-link to="/freeshipping" tag="li">
 					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN018sPcWK2JJhy38xfum_!!2053469401.png" alt="">
 					<span>9.9包邮</span>
 				</router-link>
@@ -52,7 +52,7 @@
 					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01ptnbDO2JJhybcK39o_!!2053469401.gif" alt="">
 					<span>品牌特卖</span>
 				</router-link>
-				<router-link to="/" tag="li">
+				<router-link to="/half" tag="li">
 					<img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01C0wivK2JJhxxaqA66_!!2053469401.png" alt="">
 					<span>每日半价</span>
 				</router-link>
@@ -79,9 +79,9 @@
 				
 			</div>
 		</div>
-        <!-- 叮咚抢 -->
+        <!-- 咚咚抢 -->
         <div class="dingdong">
-			<div class="dingdong_center">
+			<div class="dingdong_center" @click="handleDong()">
 				<div class="dingdong_center-left">
 					<div class="dianchang">
 						<h3>咚咚抢</h3>
@@ -166,7 +166,14 @@
 			<div class="findGood_center">
 				<p class="findTitle">发现好货</p>
 				<ul>
-					<li v-for="(item,index) in findGoodsList" :key="index">
+					<router-link v-for="(item,index) in findGoodsList" :key="index"
+					tag="li" 
+					:to="{name:'detail',query:{id:item.id,
+					goodsid:item.goodsid,title:item.dtitle,
+					price:item.jiage,
+					quan:item.quanJine,
+					xiaoliang:item.xiaoliang,
+					img:item.pic,yuanjia:item.yuanjia,}}">
 						<img :src="item.pic" alt="">
 						<h4 class="title">{{item.title}}</h4>
 						<div class="quan">
@@ -182,7 +189,7 @@
 							</p>
 							<i>已定{{((item.xiaoliang)/10000).toFixed(1)}}万</i>
 						</div>
-					</li>
+					</router-link>
 				</ul>
 			</div>
 		</div>
@@ -241,7 +248,15 @@ export default {
         this.allList = all.data.config.list;
 		// console.log(this.allList);
 
-    },
+	},
+	methods: {
+		handleTiaozhuan(){
+			this.$router.push("/search");
+		},
+		handleDong(){
+			this.$router.push("/dongdong");
+		}
+	},
 }
 </script>
 

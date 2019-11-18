@@ -9,7 +9,7 @@
                 <li>详情</li>
                 <li>推荐</li>
             </div>
-            <div class="icon iconfont" v-html="icon[1]"></div>
+            <div class="icon iconfont" v-html="icon[1]" @click="handleCaidan()"></div>
         </div>
         <!-- body -->
         <div class="detail">
@@ -136,6 +136,7 @@
     </div>
 </template>
 <script>
+import Message from "../../lib/messageBox/index.js";
 import {detailImgApi,detailInfoApi,detailRecommendApi,detailSimilarApi} from "@api/detail";
 import MessageBox from "@lib/messageBoxBuy/index.js";
 import { Toast } from 'mint-ui';
@@ -156,6 +157,8 @@ export default {
             imgList:[],
             infoList:"",
             img:"",
+            yuanjia:"",
+            flag:false,
             recommendList:[],
             similarList:[],
             op:false,
@@ -174,7 +177,8 @@ export default {
         this.yuanjia = yuanjia;
         this.xiaoliang=xiaoliang;
         this.img=img;
-        // console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
+        this.yuanjia = yuanjia;
+        console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
         //商品图片
         let imgData = await detailImgApi(goodsid);  
         this.imgList=imgData.data;
@@ -244,6 +248,18 @@ export default {
         },
         handleNone(){
             this.cartFlag=false;
+        },
+         handleCaidan(){
+            if(this.flag == 0){
+                 Message({
+                     flag:true
+                 });
+                 this.flag = 1;
+            }else{
+                 Message({
+                     flag:false
+                 });
+            }
         }
     },
     
@@ -327,6 +343,7 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
+    padding-top: .45rem;
 
 
 }
