@@ -23,7 +23,9 @@ export default {
       pullDownRefresh:{
         threshold:50
       },//下拉刷新
-      pullUpLoad:true
+      pullUpLoad:true,
+      tap:true,
+      click:true,
     });
   },
   methods: {

@@ -7,13 +7,13 @@
     </div>
 
 
-    <div class="jieshao">
+    <div class="jieshao" >
         <div class="goods_shop">
             <div class="info col-mar">
-                <img src="https://img.alicdn.com/imgextra//a8/4f/TB1yhi1khn1gK0jSZKPSutvUXXa.jpg" alt="">
+                <img :src="infoList.shopLogo" alt="">
             </div>
             <div class="xinxi">
-                    <h3 class="name">四合院儿旗舰店</h3>
+                    <h3 class="name">{{infoList.shopName}}</h3>
                     <h3 class="ttm"><img src="@assets/img/tm.png" alt="" class="tm"></h3>
             </div>
             
@@ -23,21 +23,21 @@
 
     <div class="tab">
         <div>
-            <span>宝贝描述：4.8 <img src="@assets/img/gao.png"></span>
+            <span>宝贝描述：{{infoList.dsrScore}}<img src="@assets/img/gao.png"></span>
             <i></i>
         </div>
         <div>
-            <span>宝贝描述：4.8<img src="@assets/img/gao.png"></span>
+            <span>卖家服务：{{infoList.serviceScore}}<img src="@assets/img/gao.png"></span>
             <i></i>
         </div>
         <div>
-            <span>宝贝描述：4.8<img src="@assets/img/gao.png"></span>
+            <span>物流服务：{{infoList.shipScore}}<img src="@assets/img/gao.png"></span>
         </div>
     </div>
 
 
 
-    <div class="section">
+    <!-- <div class="section">
         <ul> 
             <li>    
                <div class="img ui-act-label">
@@ -66,48 +66,43 @@
                </div>
              
             </li>
-            <li>    
-               <div class="img ui-act-label">
-                   <img src="https://img.alicdn.com/imgextra/i4/2201296327637/O1CN018zTJd926HnKAPawiC_!!2201296327637.jpg_310x310.jpg_.webp" alt="">
-               </div> 
-               <div>
-                    <h3 class="product_title">
-                            <span class="labelTop tm"></span>
-                            <span class="title_text">
-                                 【拍4件】四合院儿原生木浆抽纸40包整箱
-                            </span>
-                    </h3>
-                    <h3 class="price">
-                            <span>券后&nbsp;</span>
-                            <span class="RMB">￥</span>
-                            <span class="price_num">18.88</span>
-                        </h3>
-                        <p class="label_box">
-                            <span class="label label2">爆款</span>
-                            <span class="juan"><span >券</span>10元</span>
-                        </p>
-                        <div class="salse">
-                            <span>已售364.2万</span>
-                            <span>评论18.6万</span>
-                        </div>
-               </div>
-             
-            </li>
         </ul>
-    </div>
+    </div> -->
     </div>
 </template>
 <script>
+import {detailInfoApi} from "@api/detail";
 export default {
     name:"merchant",
+    data(){
+        return{
+            infoList:"",
+            goodsid:""
+        }
+       
+    },
     methods: {
          back() {
-      this.$router.back();
+            this.$router.back();
+            this.$destroy();
     },
+     async handleMerchant(){
+        let {goodsid}=this.$route.query;
+          //商品信息
+       let data=await detailInfoApi(goodsid); 
+       this.infoList=data.data;
+        // console.log(this.infoList);   
+        }
     },
+    created() {
+        this.handleMerchant();   
+    },
+   
+   
+    
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .header{
     height:.45rem;
     background: white;

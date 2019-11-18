@@ -9,7 +9,7 @@
                 <li>详情</li>
                 <li>推荐</li>
             </div>
-            <div class="icon iconfont" v-html="icon[1]"></div>
+            <div class="icon iconfont" v-html="icon[1]" @click="handleCaidan()"></div>
         </div>
         <!-- body -->
         <div class="detail">
@@ -39,7 +39,8 @@
             </div>
         </div>
         <div class="hr"></div>
-        <div class="store">
+        <router-link class="store" tag="div" 
+                :to="{name:'merchant',query:{goodsid:goodsid}}">
             <div class="store_info">
                 <img src="https://img.alicdn.com/imgextra//i4/379424083/O1CN01Vd5era1g23dFFzU3v_!!379424083.png_310x310.jpg"
                     alt="">
@@ -54,7 +55,7 @@
                 <li>卖家服务：{{infoList.serviceScore}}<span>高</span></li>
                 <li>物流服务：{{infoList.shipScores}}<span>平</span></li>
             </ul>
-        </div>
+        </router-link>
         <div class="hr"></div>
         <!-- 相似推荐 -->
         <div class="similar">
@@ -137,6 +138,7 @@
     </div>
 </template>
 <script>
+import Message from "../../lib/messageBox/index.js";
 import {detailImgApi,detailInfoApi,detailRecommendApi,detailSimilarApi} from "@api/detail";
 import MessageBox from "@lib/messageBoxBuy/index.js";
 import { Toast } from 'mint-ui';
@@ -158,6 +160,7 @@ export default {
             infoList:"",
             img:"",
             yuanjia:"",
+            flag:false,
             recommendList:[],
             similarList:[],
             op:false,
@@ -179,6 +182,7 @@ export default {
         this.yuanjia = yuanjia;
         this.xiaoliang=xiaoliang;
         this.img=img;
+        this.yuanjia = yuanjia;
         console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
         //商品图片
         let imgData = await detailImgApi(goodsid);  
@@ -273,6 +277,18 @@ export default {
         },
         handleSize(){
             this.size=!this.size;
+        },
+         handleCaidan(){
+            if(this.flag == 0){
+                 Message({
+                     flag:true
+                 });
+                 this.flag = 1;
+            }else{
+                 Message({
+                     flag:false
+                 });
+            }
         }
     },
     
@@ -383,6 +399,7 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
+    padding-top: .45rem;
 
 
 }

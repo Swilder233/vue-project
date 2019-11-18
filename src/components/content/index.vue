@@ -1,7 +1,13 @@
 <template>
          <div class="lei_body">
         <ul>
-            <li v-for="(item,index) in goodsList" :key="index">
+            <router-link v-for="(item,index) in goodsList" :key="index" tag="li"
+            :to="{name:'detail',query:{id:item.id,
+					goodsid:item.goodsid,title:item.dtitle,
+					price:item.jiage,
+					quan:item.quanJine,
+					xiaoliang:item.xiaoliang,
+					img:item.pic,yuanjia:item.yuanjia,}}">
                 <div class="left_img">
                     <img :src="item.pic">
                 </div>
@@ -11,7 +17,7 @@
                     <h5><span>旗舰店</span><i>券{{item.quan_jine}}元</i></h5>
                     <h6>已售{{((item.xiaoliang)/10000).toFixed(1)}}万 | 评论{{((item.comment)/10000).toFixed(1)}}</h6>
                 </div>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>

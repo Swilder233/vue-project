@@ -7,12 +7,14 @@
       <van-cell :title="item" :value="item" />
     </van-cell-group>
 
-    <van-steps :active="active" class="step">
+    <van-steps :active="active" class="step" >
       <van-step>进入淘宝</van-step>
       <van-step>复制商品标题</van-step>
       <van-step>点击搜索查询</van-step>
       <!-- <van-step>交易完成</van-step> -->
     </van-steps>
+
+    <v-touch tag="div" class="v_back" @tap="handleback()">返回</v-touch>
   </div>
 </template>
 <script>
@@ -38,14 +40,28 @@ export default {
         this.list = [];
       }
     }
+  },methods:{
+    handleback(){
+      this.$router.back();
+    }
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .sea {
   overflow: scroll;
 }
 .step{
   margin-top: .2rem;
 }
+.v_back{
+  background: linear-gradient(to right, #4bb0ff, #6149f6);
+  color:white;
+  display: inline-block;
+  margin-top: .2rem;
+  float: right;
+  font-size: .14rem;
+  border-radius: .05rem;
+}
+
 </style>

@@ -2,7 +2,7 @@
   <qing-scroll ref="scroll">
     <!-- <div class="content" ref="goodsbody"> -->
     <ul class="goods-new row-s">
-      <li class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
+      <router-link tag="li" :to="{name:'detail',query:{id:item.id,goodsid:item.goodsid,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic,yuanjia:item.yuanjia}}"  class="goods-new_items" v-for="(item) in recommend " :key="item.goodsid">
         <img :src="item.pic" alt />
         <h2 class="product_title">
           <i class="labelTop tm"></i>
@@ -25,7 +25,7 @@
           <span>已售{{(Number(item.xiaoliang)/10000).toFixed(1)}}万</span>&nbsp;
           <span>评论{{(Number(item.comment)/10000).toFixed(1)}}万</span>
         </div>
-      </li>
+      </router-link>
     </ul>
   </qing-scroll>
   <!-- </div> -->

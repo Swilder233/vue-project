@@ -40,7 +40,7 @@ const router = new VueRouter({
             meta:{
                 headerFlag:false,
                 tabbarFlag:true,
-                requiredAuth:true
+                requiredAuth:false
             }
         },
       
@@ -128,6 +128,7 @@ const router = new VueRouter({
                 meta:{
                     headerFlag:false,
                     tabbarFlag:false,
+                    requiredAuth:false
                 },
             },
         

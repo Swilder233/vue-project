@@ -73,7 +73,6 @@ export default {
       let data1 = await loginInfoList(this.username, this.password);
       if (data1.data.status == 1) {
         alert(data1.data.info);
-
         var obj = {
           username: this.username
         };

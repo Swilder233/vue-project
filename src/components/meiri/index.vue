@@ -8,7 +8,7 @@
             alt
           />
         </div>
-        <li v-for="(item,index) in getList" :key="index">
+        <router-link tag="li" :to="{name:'detail',query:{id:item.id,goodsid:item.goodsid,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic}}" v-for="(item,index) in getList" :key="index">
           <div class="lazy">
             <img :src="item.picUrl" alt />
           </div>
@@ -36,7 +36,7 @@
               <van-tag type="danger" class="glc-link glc-btn msq" v-show="flagSoon">即将开始</van-tag>
             </div>
           </div>
-        </li>
+        </router-link>
       </ul>
    
   </div>

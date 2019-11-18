@@ -95,6 +95,7 @@ export default {
     handleExit(){//退出登录
         Cookies.remove('token');
         this.$router.push("login");
+        this.$destroy();
     }
   },
 

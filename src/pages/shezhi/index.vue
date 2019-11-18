@@ -18,10 +18,10 @@
                 <span>意见反馈</span>
                 <i class="iconfont">&#xe715;</i>
             </router-link>
-              <li>
-                <span>退出登录</span>
+              <v-touch tag="li" @tap="handleExit()" class="exit">
+                <span>退出登录</span> 
                 <i class="iconfont">&#xe715;</i>
-            </li>
+              </v-touch>
         </ul>
     </div>
 </template>
@@ -33,7 +33,12 @@ export default {
     methods:{
         handleBack(){
             this.$router.push("/mine");
-        }
+        },
+         handleExit(){//退出登录
+        Cookies.remove('token');
+        this.$router.push("login");
+        this.$destroy();
+    }
     }
 }
 </script>
