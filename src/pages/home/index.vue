@@ -1,7 +1,7 @@
 <template>
     <div class="top">
 		<div class="header">
-			<input type="text" placeholder="输入商品名或粘贴宝贝标题搜索"/>
+			<input type="text" placeholder="输入商品名或粘贴宝贝标题搜索" @focus="handleTiaozhuan()"/>
 			<span  class="iconfont sousuo">&#xe613;</span>
 			<p><span class="iconfont">&#xe600;</span>
 				<span>消息</span>
@@ -241,7 +241,12 @@ export default {
         this.allList = all.data.config.list;
 		// console.log(this.allList);
 
-    },
+	},
+	methods: {
+		handleTiaozhuan(){
+			this.$router.push("/search");
+		}
+	},
 }
 </script>
 

@@ -39,7 +39,7 @@ export default {
     // },
 }
 </script>
-<style>
+<style scoped>
     /* 右边内容 */
 .content{
     height:100%; 

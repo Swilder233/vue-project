@@ -3,7 +3,7 @@
         <div class="lei_body">
             <ul>
                 <router-link tag="li" 
-                :to="{name:'detail',query:{id:item.id,goodsid:item.goodsid,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic}}"
+                :to="{name:'detail',query:{id:item.id,goodsid:item.goodsid,title:item.d_title,price:item.jiage,quan:item.quan_jine,xiaoliang:item.xiaoliang,img:item.pic,yuanjia:item.yuanjia}}"
                 v-for="(item,index) in datalist" :key="index" >
                     <div class="left_img">
                         <img :src="item.pic" alt="">

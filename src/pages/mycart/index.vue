@@ -9,7 +9,7 @@
             </div>
            
             <label for="">全选</label>
-            <p>共999件宝贝</p>
+            <p>共{{price.num}}件宝贝</p>
              
         </div>
         <!-- main -->
@@ -27,12 +27,13 @@
                     <div class="right">
                         <p>{{item.title}}</p>
                         <span class="size">规格</span>
+                        <v-touch tag="span" @tap="handleDel(index,item.id)">删除</v-touch>
                         <div class="price">
                             <strong>￥{{item.jiage}}</strong>
                             <div class="count">
-                                <span>-</span>
-                                <input type="text" value="6">
-                                <span>+</span>
+                                <v-touch tag="span" @tap="handleReduce(index)">-</v-touch>
+                                <input type="text" :value="item.count">
+                                <v-touch tag="span" @tap="handleAdd(index)">+</v-touch>
                             </div> 
                         </div>
                     </div>
@@ -42,34 +43,33 @@
         <!-- 结算 -->
         <div class="footer">
             <label for=""><input type="checkbox" >全选</label>
-            <div>合计：<strong>￥0</strong><span>结算</span></div>
+            <div>合计：<strong>￥{{price.allPrice}}</strong><span>结算</span></div>
         </div>
     </div>
 </template>
 <script>
-import {mycartApi} from "@api/detail";
+
 export default {
     name:"mycart",
     data(){
         return {
             cartList:[],
-            store:[],
             selectAll:true,
-            dianpu:"",
-            biaoti:"",
-            jiage:"",
-            pic:""
+            list:[]
+            
         }
     },
-    async created() {  
-        let {dianpu,biaoti,jiage,pic}=this.$route.params;
+     created() {  
 
-        let data=await mycartApi();
-        console.log(data.data);
-        data.data.forEach(item=>{
-            item.flag=true;
-        })
-        this.cartList=data.data;
+        let cart=JSON.parse(localStorage.getItem("cart"));
+        console.log(this.cartList);
+        if(cart){
+            cart.forEach(item => {
+                item.flag = true;
+            });
+            this.cartList=cart;
+            // console.log(this.cartList[1].flag)
+        }
 
     },
     methods: {
@@ -93,14 +93,51 @@ export default {
             }
 
             this.selectAll=stop;
+        },
+        handleAdd(index){
+            this.cartList[index].count++;
+        },
+        handleReduce(index){
+            if(this.cartList[index].count<=1){
+                this.cartList[index].count = 1;
+            }else{
+                this.cartList[index].count--
+            }
+        },
+        
+
+        handleDel(index,id){
+            this.cartList.splice(index,1);
+            this.list=JSON.parse(localStorage.getItem("cart"));
+            for(var i=0;i<this.list.length;i++){
+                if(this.list[i].id==id){
+                    this.list.splice(i,1);
+                    break;
+                }
+            }
+            localStorage.setItem("cart",JSON.stringify(this.list));
         }
     },
     computed: {
-        
+        price(){
+            let allPrice=0;
+            let num=0;
+            for(var i=0;i<this.cartList.length;i++){
+                if(this.cartList[i].flag){
+                    num+=this.cartList[i].count;
+                    allPrice+=this.cartList[i].jiage*this.cartList[i].count;
+                }
+            }
+            allPrice = Number(allPrice).toFixed(2);
+            return {
+                allPrice,
+                num
+            }
+        }
     },
 }
 </script>
-<style>
+<style scoped>
     body{
         background: #eee;
     }
@@ -112,7 +149,7 @@ export default {
         left: 0;
         top: 0;
         padding: 0 .12rem;
-        z-index: -1  
+        z-index: 0 
     }
     .cart_header{
         height: .52rem;
@@ -150,10 +187,15 @@ export default {
     /* main */
     .cart_main{
         margin-top: .76rem;
-        height: 100%;
+        /* height: 100%; */
         position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        padding-bottom: .54rem;
         width: 100%;
-        overflow: auto;
+        overflow: scroll;
     }
     .name{
         width: 100%;
@@ -206,6 +248,7 @@ export default {
         line-height: 0.24rem;
         font-size: .13rem;
         margin: .1rem 0;
+        margin-right: .8rem;
     }
     .right strong{
         font-weight: normal;
@@ -213,17 +256,22 @@ export default {
     }
 
     .price span{
-        padding: .02rem .08rem;
+        width: .27rem;
+        height: .27rem;
+        line-height: 0.26rem;
+        text-align: center;
+        display: inline-block;
         border: .01rem solid #999;
         background: #eee;
         border-radius: .04rem 0 0 .04rem;
+        float: left;
     }
     .price span:nth-of-type(2){
         border-radius: 0 0.04rem 0.04rem 0;
     }
     .price input{
         width: .4rem;
-        height: .23rem;
+        height: .27rem;
         text-align: center;
         font-size: .14rem;
         color: #333;
@@ -231,6 +279,7 @@ export default {
         border: none;
         border-top: .01rem solid #999;
         border-bottom: .01rem solid #999;
+        float: left;
     }
     .count{
         float: right;

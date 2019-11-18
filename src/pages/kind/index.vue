@@ -40,7 +40,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
     .top{
     height: .44rem;
     background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);

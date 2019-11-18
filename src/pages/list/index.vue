@@ -60,7 +60,8 @@ export default {
     },
     methods: {
         listBack(){
-            this.$router.back("/kind");
+            this.$router.push("/kind");
+            this.$destroy();
         },
     },
     created() {
@@ -72,7 +73,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
     .list{
         width: 100%;
         width: 100%;

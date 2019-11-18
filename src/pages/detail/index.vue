@@ -19,11 +19,11 @@
         <div class="goods_info">
             <h1><span>天猫</span>{{title}}</h1>
             <div class="goods_price">
-                <li>到手￥<span>{{price}}</span></li>
+                <li>券后￥<span>{{price}}</span></li>
                 <p>已定<span>{{xiaoliang | guolv("万")}}</span>件</p>
             </div>
             <div class="old_price">
-                <i>到手价<span>￥{{price}}</span></i>
+                <i>天猫价<span>￥{{yuanjia}}</span></i>
                 <i>包邮</i>
             </div>
             <div class="goods_quan">
@@ -119,16 +119,18 @@
         <div class="buy">
             <v-touch tag="span" @tap="handleBuy()">口令购买</v-touch>
             <!-- @tap="handleCart()" -->
-            <v-touch tag="span" @tap="handleCart()">领劵预定</v-touch>
+            <v-touch tag="span" @tap="handleCart()">加入购物车</v-touch>
         </div>
     </div>
     <!-- 加入cart -->
     <transition name="bottom">
         <div class="cart" v-if="cartFlag">
             <h3>种类</h3>
+            <v-touch tag="span" @tap="handleColor()" :class="flag==true?'color':''"
+            >黑色</v-touch>
             <h3>大小</h3>
-            <!-- <router-link tag="div" :to="{name:'mycart',params:{dianpu:this.infoList.shopName,biaoti:title,jiage:price,pic:img}}">确定</router-link> -->
-            <v-touch tag="div" @tap="handleSure()">确定</v-touch>
+            <v-touch tag="span" @tap="handleSize()" :class="size==true?'color':''">M</v-touch>
+            <v-touch class="sure" tag="div" @tap="handleSure()">确定</v-touch>
         </div>
     </transition>
     
@@ -155,21 +157,26 @@ export default {
             imgList:[],
             infoList:"",
             img:"",
+            yuanjia:"",
             recommendList:[],
             similarList:[],
             op:false,
             // 加入购物车
             cartFlag:false,
-            store:JSON.parse(localStorage.getItem("cart"))||[]
+            store:JSON.parse(localStorage.getItem("cart"))||[],
+            // color
+            flag:false,
+            size:false
         }
     },
     async created() {
-        let {id,goodsid,title,price,quan,xiaoliang,img}=this.$route.query;
+        let {id,goodsid,title,price,quan,xiaoliang,img,yuanjia}=this.$route.query;
         this.id=id;
         this.goodsid=goodsid;
         this.title=title;
         this.price=price;
         this.quan=quan;
+        this.yuanjia = yuanjia;
         this.xiaoliang=xiaoliang;
         this.img=img;
         console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
@@ -194,6 +201,7 @@ export default {
     methods: {
         handleDetailBack(){
             this.$router.back();
+            this.$destroy();
         },
         handleBuy(){
             this.op=true;
@@ -214,48 +222,99 @@ export default {
         },
         handleSure(){
             this.cartFlag=false;
-            // 点击弹出加入成功提示框
+            // color
+            this.flag=false;
+            this.size=false;
             Toast({
                 message: '加入购物车成功',
                 position: 'center',
                 duration: 5000
             });
+
+
+
             let obj={};
+            // obj.id=this.cid++;
+            obj.id=this.id;
             obj.dianpu=this.infoList.shopName;
             obj.title=this.title;
             obj.jiage=this.price;
             obj.pic=this.img;
-            console.log(obj);
-
-            this.store.push(obj);
+            obj.count=1;
+            obj.flag=true;
+            // console.log(obj);
+            let mark=0;
+            if(JSON.parse(localStorage.getItem("cart"))){
+                let cartArr = JSON.parse(localStorage.getItem("cart"));
+                this.store = cartArr;
+                // console.log(cartArr);
+                for(let i=0;i<this.store.length;i++){
+                    // console.log(this.store);
+                    if(this.store[i].id == obj.id){
+                        this.store[i].count++;
+                        mark=1;
+                        break;
+                    }     
+                }
+                if(mark==0){
+                    this.store.push(obj);
+                }
+            }else{
+                this.store.push(obj);
+            }           
             localStorage.setItem("cart",JSON.stringify(this.store));  
-            // obj={}
-            // if(!localStorage.getItem("cart")){
-            //     localStorage.setItem("cart",JSON.stringify(this.store));                
-            //     // this.store.push(obj);
-            //     JSON.parse(localStorage.getItem("cart")).push(obj);
-            // }else{
-            //     // console.log(JSON.parse(localStorage.getItem("cart")));
-            //     JSON.parse(localStorage.getItem("cart")).push(obj);
-            // }
         },
         handleNone(){
             this.cartFlag=false;
+        },
+        // cart
+        handleColor(){
+            this.flag=!this.flag;
+        },
+        handleSize(){
+            this.size=!this.size;
         }
     },
     
 }
 </script>
-<style>
+<style scoped>
 /* 加入购物车 */
 .cart{
     width: 100%;
-    height: 3rem;
+    height: 2.8rem;
     position: absolute;
     left: 0;
     bottom: 0;
-    background: red;
+    background: #fff;
     z-index: 30
+}
+.cart h3{
+    font-weight: normal;
+    padding: .1rem;
+}
+.cart span{
+    display: inline-block;
+    width: .5rem;
+    height: .3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    border: .01rem solid #666;
+    border-radius: .05rem;
+    margin-left: .1rem;
+}
+.cart .sure{
+    margin:.3rem .1rem;
+    width: 3rem;
+    height: .4rem;
+    line-height: 0.4rem;
+    border-radius: .1rem;
+    text-align: center;
+    background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);
+}
+/* color */
+.color{
+    background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);
 }
 .bottom-enter,.bottom-leave-to{
     bottom:-2.44rem;
