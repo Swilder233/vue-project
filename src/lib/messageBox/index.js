@@ -20,7 +20,7 @@ export default (()=>{
         },
         methods:{
             massageDestroy(){
-                console.log(this.flag);
+                // console.log(this.flag);
                 document.body.removeChild(message.$mount().$el);
             }
         }

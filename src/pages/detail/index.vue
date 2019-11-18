@@ -9,7 +9,7 @@
                 <li>详情</li>
                 <li>推荐</li>
             </div>
-            <div class="icon iconfont" v-html="icon[1]"></div>
+            <div class="icon iconfont" v-html="icon[1]" @click="handleCaidan()"></div>
         </div>
         <!-- body -->
         <div class="detail">
@@ -19,11 +19,11 @@
         <div class="goods_info">
             <h1><span>天猫</span>{{title}}</h1>
             <div class="goods_price">
-                <li>到手￥<span>{{price}}</span></li>
+                <li>券后<span>{{price}}</span></li>
                 <p>已定<span>{{xiaoliang | guolv("万")}}</span>件</p>
             </div>
             <div class="old_price">
-                <i>到手价<span>￥{{price}}</span></i>
+                <i>天猫价<span>￥{{price}}</span></i>
                 <i>包邮</i>
             </div>
             <div class="goods_quan">
@@ -135,6 +135,7 @@
     </div>
 </template>
 <script>
+import Message from "../../lib/messageBox/index.js";
 import {detailImgApi,detailInfoApi,detailRecommendApi,detailSimilarApi} from "@api/detail";
 import MessageBox from "@lib/messageBoxBuy/index.js";
 import { Toast } from 'mint-ui';
@@ -155,6 +156,8 @@ export default {
             imgList:[],
             infoList:"",
             img:"",
+            yuanjia:"",
+            flag:false,
             recommendList:[],
             similarList:[],
             op:false,
@@ -164,7 +167,7 @@ export default {
         }
     },
     async created() {
-        let {id,goodsid,title,price,quan,xiaoliang,img}=this.$route.query;
+        let {id,goodsid,title,price,quan,xiaoliang,img,yuanjia}=this.$route.query;
         this.id=id;
         this.goodsid=goodsid;
         this.title=title;
@@ -172,6 +175,7 @@ export default {
         this.quan=quan;
         this.xiaoliang=xiaoliang;
         this.img=img;
+        this.yuanjia = yuanjia;
         console.log(this.id,this.goodsid,this.title,this.price,this.quan,this.xiaoliang,this.img);
         //商品图片
         let imgData = await detailImgApi(goodsid);  
@@ -194,6 +198,7 @@ export default {
     methods: {
         handleDetailBack(){
             this.$router.back();
+            this.$destroy();
         },
         handleBuy(){
             this.op=true;
@@ -241,12 +246,24 @@ export default {
         },
         handleNone(){
             this.cartFlag=false;
+        },
+         handleCaidan(){
+            if(this.flag == 0){
+                 Message({
+                     flag:true
+                 });
+                 this.flag = 1;
+            }else{
+                 Message({
+                     flag:false
+                 });
+            }
         }
     },
     
 }
 </script>
-<style>
+<style scoped>
 /* 加入购物车 */
 .cart{
     width: 100%;
@@ -324,6 +341,7 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
+    padding-top: .45rem;
 
 
 }

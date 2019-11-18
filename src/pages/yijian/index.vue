@@ -3,7 +3,7 @@
         <div class="top">
             <a href="#" class="iconfont" @click="handleBack()">&#xe605;</a>
             <span>快速反馈</span>
-            <i class="iconfont">&#xe606;</i>
+            <i class="iconfont" @click="handleCaidan()">&#xe606;</i>
         </div>
 
         <div class="content">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import Message from "../../lib/messageBox/index.js";
 export default {
     name:"yijian",
     data(){
@@ -40,6 +41,7 @@ export default {
             active:"",
             content:"",
             qq:"",
+            flag:false,
             xuanxiang:["9.9包邮","咚咚抢","每日半价","综合反馈"],
             shuju:JSON.parse(localStorage.getItem("fankui")) || []
         }
@@ -47,6 +49,18 @@ export default {
     methods:{
         handleBack(){
             this.$router.back();
+        },
+        handleCaidan(){
+            if(this.flag == 0){
+                 Message({
+                     flag:true
+                 });
+                 this.flag = 1;
+            }else{
+                 Message({
+                     flag:false
+                 });
+            }
         },
         handleSend(){
             let reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g;

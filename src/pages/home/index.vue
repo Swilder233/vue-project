@@ -44,7 +44,7 @@
 					<img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="">
 					<span>疯抢排行</span>
 				</router-link>
-				<router-link to="/" tag="li">
+				<router-link to="/freeshipping" tag="li">
 					<img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN018sPcWK2JJhy38xfum_!!2053469401.png" alt="">
 					<span>9.9包邮</span>
 				</router-link>
@@ -166,7 +166,14 @@
 			<div class="findGood_center">
 				<p class="findTitle">发现好货</p>
 				<ul>
-					<li v-for="(item,index) in findGoodsList" :key="index">
+					<router-link v-for="(item,index) in findGoodsList" :key="index"
+					tag="li" 
+					:to="{name:'detail',query:{id:item.id,
+					goodsid:item.goodsid,title:item.dtitle,
+					price:item.jiage,
+					quan:item.quanJine,
+					xiaoliang:item.xiaoliang,
+					img:item.pic,yuanjia:item.yuanjia,}}">
 						<img :src="item.pic" alt="">
 						<h4 class="title">{{item.title}}</h4>
 						<div class="quan">
@@ -182,7 +189,7 @@
 							</p>
 							<i>已定{{((item.xiaoliang)/10000).toFixed(1)}}万</i>
 						</div>
-					</li>
+					</router-link>
 				</ul>
 			</div>
 		</div>

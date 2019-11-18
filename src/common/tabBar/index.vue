@@ -30,12 +30,12 @@ export default {
                 {
                     text:"分类",
                     icon:"&#xe61d;",
-					path:"kind"
+					path:"/kind"
                 },
                 {
-                    text:"收藏",
-                    icon:"&#xe609;",
-					path:"shoucang"
+                    text:"购物车",
+                    icon:"&#xe60b;",
+					path:"/mycart"
                 },
                 {
                     text:"我的",

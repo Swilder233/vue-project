@@ -5,7 +5,7 @@
         <div class="toubu">
             <div class="back iconfont" @click="handleBack()">&#xe605;</div>
                 <div class="title">{{caidanList[active].name}}</div>
-            <div class="icon iconfont">&#xe606;</div>
+            <div class="icon iconfont" @click="handleCaidan()">&#xe606;</div>
         </div>
 
         <!-- 菜单 -->
@@ -33,6 +33,7 @@
 
 <script>
 import {caidanList} from "@api/xiangqing";
+import MessageBox from "../../lib/messageBox/index.js";
 export default {
     name:"xiangqing",
     data(){
@@ -83,7 +84,27 @@ export default {
             localStorage.setItem("index",JSON.stringify(index));
             // console.log();
         },
-
+        handleCaidan(){
+            if(this.flag == 0){
+                 MessageBox({
+                     flag:true
+                 });
+                 this.flag = 1;
+            }else{
+                // massageDestroy();
+                // console.log(this);
+                // alert("111");
+                 MessageBox({
+                     flag:false
+                 });
+                //  this.flag = 0;
+            }
+            // console.log(this.flag);
+            // this.flag =!this.flag;
+            // MessageBox({
+            //          flag:this.flag
+            //      });
+        }
     }
 }
 </script>
