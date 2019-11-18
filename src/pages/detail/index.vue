@@ -136,7 +136,7 @@
 </template>
 <script>
 import {detailImgApi,detailInfoApi,detailRecommendApi,detailSimilarApi} from "@api/detail";
-import MessageBox from "@lib/messageBox/index.js";
+import MessageBox from "@lib/messageBoxBuy/index.js";
 import { Toast } from 'mint-ui';
 export default {
     name:"detail",
@@ -226,14 +226,18 @@ export default {
             obj.jiage=this.price;
             obj.pic=this.img;
             console.log(obj);
-            if(!localStorage.getItem("cart")){
-                localStorage.setItem("cart",JSON.stringify(this.store));                
-                // this.store.push(obj);
-                // JSON.parse(localStorage.getItem("cart")).push(obj);
-            }else{
-                console.log(JSON.parse(localStorage.getItem("cart")));
-                // JSON.parse(localStorage.getItem("cart")).push(obj);
-            }
+
+            this.store.push(obj);
+            localStorage.setItem("cart",JSON.stringify(this.store));  
+            // obj={}
+            // if(!localStorage.getItem("cart")){
+            //     localStorage.setItem("cart",JSON.stringify(this.store));                
+            //     // this.store.push(obj);
+            //     JSON.parse(localStorage.getItem("cart")).push(obj);
+            // }else{
+            //     // console.log(JSON.parse(localStorage.getItem("cart")));
+            //     JSON.parse(localStorage.getItem("cart")).push(obj);
+            // }
         },
         handleNone(){
             this.cartFlag=false;

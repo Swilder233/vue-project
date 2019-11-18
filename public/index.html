@@ -7,7 +7,15 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/public.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/js-cookie/latest/js.cookie.js"></script>
     <title>mangguo</title>
+    <script>
+        if (!Cookies.get("token")) {
+      window.location.href = "http://localhost:8080/#/login";
+    }
+    </script>
   </head>
   <body>
     <noscript>

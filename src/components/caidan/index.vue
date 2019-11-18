@@ -6,11 +6,13 @@
         </div>
 
         <div class="fenlei_content">
-            <a href="#" v-for="(item,index) in caidanList" :key="index">
+            <!-- <a href="#" v-for="(item,index) in caidanList" :key="index">
                 <img :src="item.img1">
                 <span>{{item.name}}}</span>
-            </a>
-           
+            </a> -->
+           <router-link v-for="(item,index) in caidanList" :key="index" :to="{name:'xqc',query:{id:item.id,index:index}}"
+				tag="a"> <img :src="item.img1">
+                <span>{{item.name}}}</span></router-link>
         </div>
     </div>
 </template>

@@ -8,8 +8,12 @@ import LoadingView from "./index.vue";
             el:document.createElement("div")
         })
      }
-    loadingMount(){
-        document.body.appendChild(this.loadingVm.$mount().$el);
+     loadingMount(){
+         document.body.appendChild(this.loadingVm.$mount().$el);
+     }
+     loadingDestroy(){
+        //  document.body.removeChild(this.loadingVm.$mount().$el);
+        this.loadingVm.$mount().$el.remove();
      }
     loadingDestroy(){
         // document.body.removeChild(this.loadingVm.$mount().$el);
