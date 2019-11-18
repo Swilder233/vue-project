@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         listBack(){
-            this.$router.push("/kind");
+            this.$router.back();
             this.$destroy();
         },
     },

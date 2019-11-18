@@ -10,7 +10,7 @@
                     <button class="search">
                         <img src="@assets/images/search.png" alt="">
                     </button>
-                    <input type="text" placeholder="输入商品名或粘贴宝贝标题搜索">
+                    <input type="text" placeholder="输入商品名或粘贴宝贝标题搜索" @focus="handleSkip()">
                 </form>
             </div>
         </div>
@@ -36,7 +36,12 @@ export default {
         return {
             icon:["&#xe605;"]
         }
-    }
+    },
+    methods: {
+        handleSkip(){
+            this.$router.push("/search");
+        }
+    },
     
 }
 </script>

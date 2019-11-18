@@ -51,6 +51,7 @@ export default {
     overflow-y: auto;
     position: absolute;
     z-index: 0;
+    background: #fff;
     /* padding-bottom: .5rem; */
     /* overflow: scroll; */
 }
