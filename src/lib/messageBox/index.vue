@@ -6,7 +6,7 @@
                 <a href="#" class="iconfont" v-html="item.icon"></a>
                 <span>{{item.text}}</span>
             </router-link> -->
-            <li v-for="(item,index) in messageList" :key="index" @click="item.path">
+            <li v-for="(item,index) in messageList" :key="index">
                 <a :href="item.path" @click="massageDestroy()">
                     <i class="iconfont" v-html="item.icon"></i>
                     <span>{{item.text}}</span>
@@ -46,7 +46,7 @@ export default {
         {
             text:"我的",
             icon:"&#xe6f8;",
-            path:"mine"
+            path:"/mine"
         }
     ]
         }

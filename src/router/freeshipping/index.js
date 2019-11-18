@@ -5,6 +5,7 @@ export default{
         name:"freeshipping",
         meta:{
             headerflag:true,
+            tabbarFlag:true
         },
         children:[
             {
@@ -13,6 +14,7 @@ export default{
                 name:"jx1",
                 meta:{
                     headerflag:true,
+                    tabbarFlag:true
                 }, 
             } 
         ]

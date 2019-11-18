@@ -96,7 +96,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .btn {
   line-height: 0.37rem;
   text-align: center;

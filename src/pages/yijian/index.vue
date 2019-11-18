@@ -41,7 +41,7 @@ export default {
             content:"",
             qq:"",
             xuanxiang:["9.9包邮","咚咚抢","每日半价","综合反馈"],
-            shuju:[]
+            shuju:JSON.parse(localStorage.getItem("fankui")) || []
         }
     },
     methods:{
@@ -58,7 +58,7 @@ export default {
                     QQ:this.qq
                 }
                 this.shuju.push(obj);
-                console.log(this.shuju);
+                // console.log(this.shuju);
                 localStorage.setItem("fankui",JSON.stringify(this.shuju));
                 this.active = 0;
                 this.content = "";
